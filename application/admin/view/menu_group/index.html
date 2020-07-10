@@ -1,0 +1,52 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<div class="x-nav">
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right;margin-right:20px;" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row" style="padding-left: 20px">
+        <a href="{:url('menuGroup/create')}">
+            <span class="layui-btn layui-btn-xs">
+                <i class="layui-icon">&#xe654;</i>新增
+            </span>
+        </a>
+    </div>
+    <table border="0" class="layui-table" lay-skin="line" lay-filter="test">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>分组名</th>
+            <th>icon</th>
+            <th>排序</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            {if !empty($menu_groups)}
+            {foreach $menu_groups as $menu_group}
+            <tr>
+                <td>{$i++}</td>
+                <td>{$menu_group['name']}</td>
+                <td>{:htmlentities($menu_group['icon'])}</td>
+                <td>{$menu_group['sort']}</td>
+                <td>
+                    <a href="{:url('menuGroup/edit',array('menu_group_id'=>$menu_group['id']))}" class="layui-btn  layui-btn-warm">编辑</a>
+                    <button class="layui-btn layui-btn-xs layui-btn-danger delete" data-url="{:url('menuGroup/delete',array('menu_group_id'=>$menu_group['id']))}">删除</button>
+                </td>
+            </tr>
+            {/foreach}
+            {else}
+            <tr>
+                <td colspan="4">暂无数据</td>
+            </tr>
+            {/if}
+        </tbody>
+    </table>
+</div>
+
+<script src="/assets/js/user/user.js"></script>
+
+{/block}
+
+

@@ -1,0 +1,63 @@
+<!doctype html>
+<html  class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+    <title>为杰宣传网页后台管理</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    {block name="css_js"}
+    {include file="layouts:css_js"}
+    {/block}
+
+</head>
+<style>
+    .page-content{
+        overflow-y: auto;
+    }
+</style>
+<body>
+<!-- 顶部开始 -->
+<div class="container">
+    {block name="header"}
+    {include file="layouts:header"}
+    {/block}
+</div>
+<!-- 顶部结束 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    {block name="sidebar"}
+    {include file="layouts:sidebar"}
+    {/block}
+</div>
+<!-- <div class="x-slide_left"></div> -->
+<!-- 左侧菜单结束 -->
+
+<!-- 右侧主体开始 -->
+
+<div class="page-content" >
+<!--    <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">-->
+<!--        <ul class="layui-tab-title">-->
+<!--            <li class="home">-->
+<!--                <a _href="{:url('index/index')}">-->
+<!--                    <i class="layui-icon">&#xe68e;</i>我的桌面-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+
+<!--        <div class="layui-tab-content">-->
+<!--            <div class="layui-tab-item layui-show">-->
+<!--                -->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div id="tab_show"></div>-->
+<!--    </div>-->
+    {block name="content"}{/block}
+</div>
+<!-- 右侧主体结束 -->
+{block name="footer"}
+{include file="layouts:footer"}
+{/block}
+</body>
+</html>

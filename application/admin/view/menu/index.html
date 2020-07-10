@@ -1,0 +1,71 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<div class="x-nav">
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row" style="padding-left: 20px">
+        <a href="{:url('menu/create')}">
+            <span class="layui-btn layui-btn-sm">
+                <i class="layui-icon">&#xe654;</i>新增
+            </span>
+        </a>
+    </div>
+    <table border="0" class="layui-table" lay-skin="line" lay-filter="test">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>菜单名</th>
+            <th>URL</th>
+            <th>分组名</th>
+            <th>icon</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            {if !empty($menus) && !empty($menu_groups)}
+            {foreach $menus as $menu}
+            <tr>
+                <td>{$i++}</td>
+                <td>{$menu['name']}</td>
+                <td>{$menu['url']}</td>
+                {foreach $menu_groups as $m_group}
+                {if $m_group['id'] == $menu['pid']}
+                <td>{$m_group['name']}</td>
+                <td>{:htmlentities($m_group['icon'])}</td>
+                {/if}
+                {/foreach}
+                <td>
+                    <a href="{:url('menu/edit',array('menu_id'=>$menu['id']))}" class="layui-btn layui-btn-xs layui-btn-warm">编辑</a>
+                    <button class="layui-btn layui-btn-xs layui-btn-danger delete" data-url="{:url('menu/delete',array('menu_id'=>$menu['id']))}">删除</button>
+                </td>
+            </tr>
+            {/foreach}
+            {else}
+            <tr>
+                <td colspan="6">暂无数据</td>
+            </tr>
+            {/if}
+        </tbody>
+    </table>
+</div>
+
+<script src="/assets/js/user/user.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+</script>
+
+{/block}
+
+

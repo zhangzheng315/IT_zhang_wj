@@ -1,0 +1,25 @@
+<div id="side-nav">
+    <ul id="nav">
+        {if !empty($menu_lists)}
+        {foreach $menu_lists as $m_list}
+        <li>
+            <a href="javascript:;">
+                <i class="layui-icon">{$m_list['icon']}</i>
+                <cate>{$m_list['name']}</cate>
+                <i class="iconfont nav_right">&#xe697;</i>
+            </a>
+            <ul class="sub-menu">
+                {foreach $m_list['child'] as $child}
+                <li>
+                    <a href="{:url($child['url'])}">
+                        <i class="iconfont">&#xe6a7;</i>
+                       <cate>{$child['name']}</cate>
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </li>
+        {/foreach}
+        {/if}
+    </ul>
+</div>

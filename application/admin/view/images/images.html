@@ -1,0 +1,169 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+
+
+
+
+<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"><br><script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script><br><script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script><br>-->
+<style>
+    table{
+        text-align: center;
+    }
+    p{
+        overflow: hidden;
+    }
+    .th th{
+        text-align: center;
+    }
+
+</style>
+
+<div class="x-nav">
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md11 x-so" action="{:url('images/index')}">
+            <input type="text" class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
+            <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
+            <div class="layui-input-inline">
+                <select name="ifcation_id" id="">
+                    <option value="0">--请选择--</option>
+                    {volist name='ps' id='obj'}
+                    <option value="{$obj.id}">{$obj.ifcation_name}</option>
+                    {/volist}
+                </select>
+            </div>
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+
+        </form>
+        <div class="layui-col-md1">
+            <a href="{:url('images/create')}">
+                <span class="layui-btn layui-btn-small">
+                    <i class="layui-icon">&#xe654;</i>新增
+                </span>
+            </a>
+        </div>
+    </div>
+    <table class="layui-table" lay-filter="test">
+        <thead class="th">
+        <tr>
+            <th>#</th>
+            <th>缩略图</th>
+            <th>广告分组</th>
+            <th>广告标题</th>
+            <th>广告状态</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {if isset($list)}
+        {foreach $list as $obj}
+        <tr>
+            <td>{$obj.img_id}</td>
+            <td><img src="{$obj.img_url}" alt=""height="50px" ></td>
+            <td>{$obj.img_name}</td>
+            <td><p>{$obj.img_title}</p></td>
+            {if $obj.status == 1 }
+            <td><button class="layui-btn layui-btn-xs forbidden" data-url="{:url('images/forbidden',array('img_id'=>$obj['img_id'],'status'=>$obj['status']))}"  f-id="{$obj.status}">启用</button></td>
+            {else}
+            <td><button class="layui-btn layui-btn-xs forbidden layui-btn-normal" data-url="{:url('images/forbidden',array('img_id'=>$obj['img_id'],'status'=>$obj['status']))}" f-id="{$obj.status}">禁用</button></td>
+            {/if}
+            <td>{$obj.created_at}</td>
+            <td>{$obj.updated_at}</td>
+            <td>
+                <a href="{:url('images/edit',array('img_id'=>$obj.img_id))}" class="layui-btn layui-btn-xs layui-btn-warm">编辑</a>
+                <button class="layui-btn layui-btn-xs layui-btn-danger delete" data-url="{:url('images/delete',array('img_id'=>$obj.img_id))}">删除</button>
+            </td>
+        </tr>
+        {/foreach}
+        {else}
+        <tr>
+            <td colspan="5">暂无数据</td>
+        </tr>
+        {/if}
+        </tbody>
+
+    </table>
+
+    <ul class="paginate">
+        {$list}
+    </ul>
+</div>
+
+<!--<script src="/assets/js/user/user.js"></script>-->
+<script>
+    $('.delete').click(function(){
+        let url = $(this).attr('data-url')
+        layui.use('layer', function(){
+            layer.confirm('确定删除？', {
+                btn: ['确定','取消'],
+                time: 200000, //20s后自动关闭
+            },function(index){
+                $.ajax({
+                    type:'post',
+                    url:url,
+                    success:function(rel){
+                        if(rel.status){
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                            // location.reload()
+                        }else{
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                        }
+                    }
+                })
+                layer.close(index);
+            });
+        })
+    })
+    $('.forbidden').click(function () {
+        let url = $(this).attr('data-url')
+        let f_id = $(this).attr('f-id') == 1 ? 0 : 1
+        let text = f_id == 1 ? '禁用' : '启用' ;
+        layui.use('layer', function(){
+            layer.confirm('确定进行此操作？', {
+                btn: ['确定','取消'],
+                time: 200000, //20s后自动关闭
+            },function(index){
+                $.ajax({
+                    type:'post',
+                    url:url,
+                    success:function(rel){
+                        if(rel.status){
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                            location.reload()
+                        }else{
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                        }
+
+                    }
+                })
+                layer.close(index);
+            });
+        })
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    </script>
+{/block}

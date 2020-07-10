@@ -1,0 +1,84 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<div class="x-nav">
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+    <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form id="myform" class="layui-form layui-col-md11 x-so" action="{:url('user/index')}">
+            <input type="text" class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start" value="{:request()->get('start')}">
+            <input type="text" class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end" value="{:request()->get('end')}">
+            <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input" id="username" value="{:request()->get('username')}">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach">
+                <i class="layui-icon" >&#xe615;</i>
+            </button>
+            <a href="{:url('user/index')}" class="layui-btn reset">重置</a>
+        </form>
+        <div class="layui-col-md1">
+            <a href="{:url('user/create')}">
+                <span class="layui-btn layui-btn-sm">
+                    <i class="layui-icon">&#xe654;</i>新增
+                </span>
+            </a>
+        </div>
+    </div>
+    <table class="layui-table" lay-skin="line" lay-filter="test">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>用户名</th>
+            <th>禁/启用</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {if isset($lists)}
+            {foreach $lists as $list}
+            <tr>
+                <td>{$i++}</td>
+                <td>{$list->user_name}</td>
+                <td>
+                    {if $list['status']==1}
+                        <button class="layui-btn layui-btn-xs layui-btn-normal forbidden" data-url="{:url('user/forbidden',array('user_id'=>$list['user_id']))}" f-id="{$list['status']}">禁用</button>
+                    {else}
+                    <button class="layui-btn layui-btn-xs forbidden" data-url="{:url('user/forbidden',array('user_id'=>$list['user_id']))}" f-id="{$list['status']}" >启用</button>
+                    {/if}
+                </td>
+                <td>{$list->created_at}</td>
+                <td>
+                    <a href="{:url('user/edit',array('user_id'=>$list['user_id']))}" class="layui-btn layui-btn-xs layui-btn-warm">编辑</a>
+                    <button class="layui-btn layui-btn-xs layui-btn-danger delete" data-url="{:url('user/delete',array('user_id'=>$list['user_id']))}">删除</button>
+                </td>
+            </tr>
+            {/foreach}
+        {else}
+            <tr>
+                <td colspan="5">暂无数据</td>
+            </tr>
+        {/if}
+        </tbody>
+    </table>
+</div>
+
+<script src="/assets/js/user/user.js"></script>
+<script>
+    $('.reset').click(function(){
+        document.getElementById('myform').reset();
+    })
+    layui.use(['form','laydate'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+</script>
+{/block}
+
+

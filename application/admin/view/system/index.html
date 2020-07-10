@@ -1,0 +1,150 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<div class="x-body">
+    <div class="layui-container">
+        <div class="layui-row">
+            <span class="layui-col-md11">系统设置</span>
+            <button class="layui-btn layui-btn-sm back">返回</button>
+        </div>
+
+        <hr/>
+        <form class="layui-form user-create-form">
+            <div class="layui-form-item">
+                <label for="wangzhan" class="layui-form-label">
+                    <span class="x-red">*</span>网站名称
+                </label>
+                <div class="layui-input-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" id="wangzhan" name="system_name"  value="{$list[0]['name']}" lay-verify="required"
+                               autocomplete="off" placeholder="" class="layui-input" >
+                    </div>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="biaoti" class="layui-form-label">
+                    <span class="x-red">*</span>网站标题
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="biaoti" name="system_title"  value="{$list[0]['title']}" lay-verify="required"
+                           autocomplete="off" placeholder="" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="guanjianzi" class="layui-form-label">
+                    <span class="x-red">*</span>站点关键字
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="guanjianzi" name="system_guan"  value="{$list[0]['keyword']}" lay-verify="required"
+                           autocomplete="off" placeholder="" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="miaoshu" class="layui-form-label">
+                    <span class="x-red">*</span>站点描述
+                </label>
+                <div class="layui-input-inline">
+                    <textarea type="text" id="miaoshu" name="system_miaoshu" required="" style="width: 250px;height: 140px;text-align: left" class="layui-input" value="">{$list[0]['describe']}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="daima" class="layui-form-label">
+                    <span class="x-red">*</span>统计代码
+                </label>
+                <div class="layui-input-inline">
+                    <textarea type="text" id="daima" name="system_daima" required="" style="width: 250px;height: 140px;text-align: left" class="layui-input" value="">{$list[0]['Statistics']}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="wx" class="layui-form-label">
+                    <span class="x-red">*</span>客服微信
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="wx" name="system_wx"  value="{$list[0]['wx']}" lay-verify="required"
+                           autocomplete="off" placeholder="" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="tel" class="layui-form-label">
+                    <span class="x-red">*</span>联系电话
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="tel" name="system_tel"  value="{$list[0]['tel']}" lay-verify="required"
+                           autocomplete="off" placeholder="" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="beian" class="layui-form-label">
+                    <span class="x-red">*</span>网站备案号
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="beian" name="system_beian"  value="{$list[0]['keeps']}" lay-verify="required"
+                           autocomplete="off" placeholder="" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="phone" class="layui-form-label">
+                    <span class="x-red">*</span>
+                </label>
+                <div class="layui-input-inline">
+                    <button  class="layui-btn" id="phone" lay-filter="update" lay-submit="" >
+                        保存修改
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    var _hmt = _hmt || []; (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script type="text/javascript">
+    $('.back').click(function () {
+        history.go(-1)
+    });
+    layui.use(['form','layer'], function() {
+        var form = layui.form
+        form.on('submit(update)', function(e){
+            let data = e.field
+            console.log(data);
+            $.ajax({
+                type:"post",
+                url:"{:url('system/update')}",
+                data:{
+                    name:data.system_name,
+                    title:data.system_title,
+                    keyword:data.system_guan,
+                    describe:data.system_miaoshu,
+                    Statistics:data.system_daima,
+                    wx:data.system_wx,
+                    tel:data.system_tel,
+                    keeps:data.system_beian
+                },
+                success:function (rel) {
+                    if(rel){
+                        layer.msg('修改成功', {
+                            time: 2000,
+                        });
+                        self.location = document.referrer;
+                    }else{
+                        layer.msg('修改失败', {
+                            time: 2000,
+                        });
+                    }
+
+                }
+            })
+            return false;
+        })
+
+    });
+
+</script>
+{/block}
