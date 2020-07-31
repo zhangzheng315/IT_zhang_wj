@@ -8,9 +8,18 @@
         </div>
 
         <hr/>
-        <form class="layui-form user-create-form" action="{:url('images/save')}" method="post" enctype="multipart/form-data">
+        <form class="layui-form user-create-form" id="add">
             <input type="text" hidden name="img_id" value="{$list[0]['img_id']}">
             <input type="text" hidden name="img_xg" value="true">
+            <div class="layui-form-item">
+                <label for="L_pass" class="layui-form-label">
+                    <span class="x-red">*</span>图片上传
+                </label>
+                <div class="layui-input-inline">
+                    <input type="file" name="image" id="L_pass"/>
+                    <img src="{$list[0]['img_url']}" class="img"  width="300px">
+                </div>
+            </div>
             <div class="layui-form-item">
                 <label for="biaoti" class="layui-form-label">
                     <span class="x-red">*</span>图片标题
@@ -24,20 +33,10 @@
                 <label for="concent" class="layui-form-label">
                     <span class="x-red">*</span>图片内容
                 </label>
-                <div class="layui-input-inline">
-                    <textarea type="text" id="concent" name="img_concent" required="" style="width: 250px;height: 140px;text-align: left" class="layui-input" value="">{$list[0]['img_concent']}</textarea>
+                <div class="layui-input-inline" id="concent">
+                    <textarea type="text" id="container" name="img_concent" required="" style="width: 900px;height: 140px;text-align: left" class="" value="">{$list[0]['img_concent']}</textarea>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label">
-                    <span class="x-red">*</span>图片上传
-                </label>
-                <div class="layui-input-inline">
-                    <input type="file" name="image" id="L_pass"/>
-                    <img src="{$list[0]['img_url']}" class="img"  width="300px">
-                </div>
-            </div>
-
             <div class="layui-form-item">
                 <label for="phone" class="layui-form-label">
                     <span class="x-red">*</span>
@@ -60,6 +59,35 @@
         $(".img").css('width','300px')
         $(".img").attr("src",URL.createObjectURL($(this)[0].files[0]));
     });
+    layui.use(['form','layer'], function() {
+        var form = layui.form
+        form.on('submit(add)', function(e){
+            var formData = new FormData($('#add')[0])
+            $.ajax({
+                type: "post",
+                url: "{:url('images/save')}",
+                data:formData,
+                cache:false,
+                processData:false,
+                contentType:false,
+                success: function (rel) {
+                    console.log(rel)
+                    if(rel.status){
+                        layer.msg(rel.msg, {
+                            time: 2000,
+                        });
+                        self.location = document.referrer;
+                    }else{
+                        layer.msg(rel.msg, {
+                            time: 2000,
+                        });
+                    }
+
+                }
+            })
+            return false;
+        })
+    })
 </script>
 <script>
     var _hmt = _hmt || []; (function() {

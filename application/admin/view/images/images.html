@@ -1,10 +1,5 @@
 {extend name="layouts::layout"/}
 {block name="content"}
-
-
-
-
-<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"><br><script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script><br><script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script><br>-->
 <style>
     table{
         text-align: center;
@@ -19,6 +14,7 @@
 </style>
 
 <div class="x-nav">
+    <i>广告互动</i>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
@@ -29,7 +25,7 @@
             <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
             <div class="layui-input-inline">
                 <select name="ifcation_id" id="">
-                    <option value="0">--请选择--</option>
+                    <option value="">--请选择--</option>
                     {volist name='ps' id='obj'}
                     <option value="{$obj.id}">{$obj.ifcation_name}</option>
                     {/volist}
@@ -63,7 +59,7 @@
         {if isset($list)}
         {foreach $list as $obj}
         <tr>
-            <td>{$obj.img_id}</td>
+            <td>{$i++}</td>
             <td><img src="{$obj.img_url}" alt=""height="50px" ></td>
             <td>{$obj.img_name}</td>
             <td><p>{$obj.img_title}</p></td>
@@ -89,7 +85,8 @@
 
     </table>
 
-    <ul class="paginate">
+
+    <ul class="layui-laypage">
         {$list}
     </ul>
 </div>
@@ -111,7 +108,7 @@
                             layer.msg(rel.msg, {
                                 time: 2000,
                             });
-                            // location.reload()
+                            location.reload()
                         }else{
                             layer.msg(rel.msg, {
                                 time: 2000,
@@ -146,7 +143,6 @@
                                 time: 2000,
                             });
                         }
-
                     }
                 })
                 layer.close(index);

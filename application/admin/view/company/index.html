@@ -1,0 +1,85 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<style>
+    .layui-table td, .layui-table th {
+        text-align: center;
+    }
+</style>
+<div class="x-nav">
+    <i>企业信息</i>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+    <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <div class="layui-col-md1">
+            {if !empty($lists)}
+                <a href="{:url('company/edit')}">
+                    <span class="layui-btn layui-btn-sm">
+                        <i class="layui-icon">&#xe654;</i>编辑
+                    </span>
+                </a>
+            {else}
+                <a href="{:url('company/create')}">
+                    <span class="layui-btn layui-btn-sm">
+                        <i class="layui-icon">&#xe654;</i>添加
+                    </span>
+                </a>
+            {/if}
+        </div>
+    </div>
+    <table class="layui-table" lay-filter="test">
+        <br>
+        <div style="font-size: 25px;">&nbsp;&nbsp;公司信息</div>
+        <thead>
+        <tr>
+            <th width="30%">#</th>
+            <th>内容</th>
+        </tr>
+        </thead>
+        <tbody>
+        {if isset($lists)}
+            {if !empty($lists)}
+                {foreach $lists as $key=>$list}
+                <tr>
+                    <td>{$key}</td>
+                    <td>{$list}</td>
+                </tr>
+                {/foreach}
+            {else}
+            <tr>
+                <td colspan="2">暂无数据</td>
+            </tr>
+            {/if}
+
+        {/if}
+
+        </tbody>
+    </table>
+    <div>
+        <span>宣传视频：</span>
+        <video style="vertical-align: top;width: 500px;" src="{$info['video']}" class="video"  loop autoplay>
+        </video>
+    </div>
+</div>
+
+<script src="/assets/js/user/user.js"></script>
+<script>
+    $('.reset').click(function(){
+        document.getElementById('myform').reset();
+    })
+    layui.use(['form','laydate'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+</script>
+{/block}
+
+

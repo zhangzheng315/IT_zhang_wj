@@ -1,0 +1,110 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<div class="x-body">
+    <div class="layui-container">
+        <div class="layui-row">
+            <span class="layui-col-md11">系统介绍</span>
+            <button class="layui-btn layui-btn-sm back">返回</button>
+        </div>
+        <hr/>
+        <form class="layui-form user-create-form" id="add">
+            {if $video_xg == true}
+            <input type="text" hidden name="video_xg" value="true">
+            <input type="text" hidden name="id" value="{$list.id}">
+            {/if}
+            <div class="layui-form-item">
+                <label for="L_pass" class="layui-form-label">
+                    <span class="x-red">*</span>图片展示
+                </label>
+                <div class="layui-input-inline">
+
+                    <input type="file" name="image" id="L_pass"/>
+                    {if $video_xg == true}
+                    <img src="{$list.url}" class="img" style="width: 300px" >
+                    {else}
+                    <img src="" class="img" >
+                    {/if}
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="biaoti" class="layui-form-label">
+                    <span class="x-red">*</span>系统名称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="biaoti" name="title"  value="{if $video_xg == true}{$list.title}{/if}" lay-verify="required"
+                           autocomplete="off" placeholder="输入系统名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="concent" class="layui-form-label">
+                    <span class="x-red">*</span>系统详情
+                </label>
+                <div class="layui-input-inline" id="concent">
+                    <textarea type="text" id="container" name="content" required="" style="width: 900px;height: 140px;text-align: left" class="" value="">{if $video_xg == true}{$list.content}{/if}
+                    </textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="phone" class="layui-form-label">
+                    <span class="x-red">*</span>
+                </label>
+                <div class="layui-input-inline">
+                    <button  class="layui-btn" id="phone" lay-filter="add" lay-submit="" type="submit">
+                        提交
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.back').click(function () {
+        history.go(-1)
+    });
+    $("input[name='image']").change(function(){
+        $(".img").css('width','300px')
+        $(".img").attr("src",URL.createObjectURL($(this)[0].files[0]));
+    });
+    layui.use(['form','layer'], function() {
+        var form = layui.form
+        form.on('submit(add)', function(e){
+            let data = e.field
+            var formData = new FormData($('#add')[0])
+            $.ajax({
+                type: "post",
+                url: "{:url('video/save')}",
+                data:formData,
+                cache:false,
+                processData:false,
+                contentType:false,
+                success: function (rel) {
+                    console.log(rel)
+                    if(rel.status){
+                        layer.msg(rel.msg, {
+                            time: 2000,
+                        });
+                        self.location = document.referrer;
+                    }else{
+                        layer.msg(rel.msg, {
+                            time: 2000,
+                        });
+                    }
+
+                }
+            })
+            return false;
+        })
+    })
+
+
+</script>
+<script>
+    var _hmt = _hmt || []; (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+{/block}

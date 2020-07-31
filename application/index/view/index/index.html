@@ -1,644 +1,289 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>生产管理系统-为杰科技</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="为杰科技是一款革新性的生产管理系统，区别于传统mes系统，为杰科技云端部署并运行在手机、平板、电脑端，帮助工厂低成本、高效率地实现从客户下单到成品出厂之间的全链路数字化管理。 " />
-  <meta name="keywords" content="MES系统，MES，生产管理系统，制造执行系统" />
-  <script async src="static/js/e18971fd2e024a87b6b9ee65c0777507.js"></script>
-  <script async src="static/js/gtag.js"></script>
-  <script async src="static/js/hm.js"></script>
-  <link href="static/css/animate.min.css" type="text/css" rel="stylesheet"/>
-  <link href="static/css/swiper.min.css" type="text/css" rel="stylesheet"/>
-  <link href="static/css/js.css" type="text/css" rel="stylesheet"/>
-  <link href="static/css/style.css" type="text/css" rel="stylesheet"/>
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-</head>
-<body>
+﻿{include file='public/hader'}
+<link href="http://demo.htmleaf.com/1607/201607071614/css/demo.css" rel="stylesheet">
 <style>
-  @charset "utf-8";body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0}body{font-weight:400;font-size:12px;font-family:pingfang sc,microsoft yahei,helvetica neue,Arial,pingfang sc,microsoft yahei,helvetica neue,Arial,微软雅黑,SimSun,sans-serif,SimSun,sans-serif;color:#111;text-decoration:none}ul,li{list-style-image:none;list-style-type:none}img{border:none}a{color:#333;text-decoration:none;font-family:pingfang sc,microsoft yahei,helvetica neue,Arial,pingfang sc,microsoft yahei,helvetica neue,Arial,微软雅黑,SimSun,sans-serif,SimSun,sans-serif}a:hover{text-decoration:none}.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}.clearfix{display:inline-table}*html .clearfix{height:1%}.clearfix{display:block}*+html .clearfix{min-height:1%}table{border-collapse:collapse;border-spacing:0}.right{float:right}.left{float:left}.relative{position:relative}.absolute{position:absolute}.hide{display:none}.show{display:block}body{background:#f3f6fb}
+    .videoboxxx{
+        width:90%;
+    }
+    .con .cn{
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .con .cn>p{
+        text-indent: 2em;
+    }
+    #gsjj{
+        overflow-x: hidden;
+    }
 </style>
-<style>
-  .banner-main{width:100%;height:411px;position:relative}.banner-main-img{height:411px;width:100%;min-width:1000px;overflow:hidden}.banner-main-img li{width:100%;display:none;overflow:hidden;position:absolute;top:0;left:0}.banner-main-img li img{width:1920px;height:600px;display:block;position:relative;left:50%;margin-left:-960px;top:0}.ui-controls ul{position:absolute;bottom:20px;right:20px}.ui-controls ul li{border-radius:100%;float:left;width:10px;height:10px;margin:0 5px;border:2px solid #ddd;background:#eee;text-indent:-9999px;overflow:hidden;cursor:pointer;-webkit-transition:all .2s;transition:all .2s}.ui-controls ul li:hover{border:2px solid #ccc;background:#999}.ui-controls ul .current{border:2px solid #ccc;background:#999}.ui-controls .ui-prev{width:41px;height:69px;position:absolute;top:50%;left:0;margin-top:-35px;text-indent:-9999px;overflow:hidden;background:url("assets/images/icon-slides.png") no-repeat -84px 50%;z-index:999;cursor:pointer}.ui-controls .ui-next{width:41px;height:69px;position:absolute;top:50%;right:0;margin-top:-35px;text-indent:-9999px;overflow:hidden;background:url("http://www.jq22.com/demo/jq-lunbo201912100004/images/icon-slides.png") no-repeat -125px 50%;z-index:999;cursor:pointer}.ui-controls .ui-prev:hover{background-position-x:0}.ui-controls .ui-next:hover{background-position-x:-42px}.pic-scroll{width:1200px;margin:50px auto 30px}.pic-scroll .lunbo01{float:left;width:600px;height:400px;border:5px solid #ccc;background:#eee;position:relative}.banner-main-img01{height:400px;width:600px;overflow:hidden}.banner-main-img01 li{width:600px;display:none;overflow:hidden;position:absolute;top:0;left:0}.banner-main-img01 li img{width:600px;height:400px;display:block;position:relative;left:0;top:0}.ui-controls01 ul{position:absolute;bottom:20px;right:20px}.ui-controls01 ul li{float:left;width:10px;height:10px;margin:0 5px;border:2px solid #ddd;background:#eee;text-indent:-9999px;overflow:hidden;cursor:pointer;-webkit-transition:all .2s;transition:all .2s}.ui-controls01 ul li:hover{border:2px solid #ccc;background:#999}.ui-controls01 ul .current{border:2px solid #ccc;background:#999}.ui-controls01 .ui-prev01{width:41px;height:69px;position:absolute;top:50%;left:0;margin-top:-35px;text-indent:-9999px;overflow:hidden;background:url("http://www.jq22.com/demo/jq-lunbo201912100004/images/icon-slides.png") no-repeat -84px 50%;z-index:999;cursor:pointer}.ui-controls01 .ui-next01{width:41px;height:69px;position:absolute;top:50%;right:0;margin-top:-35px;text-indent:-9999px;overflow:hidden;background:url(../images/icon-slides.png) no-repeat -125px 50%;z-index:999;cursor:pointer}.ui-controls01 .ui-prev01:hover{background-position-x:0}.ui-controls01 .ui-next01:hover{background-position-x:-42px}
-</style>
-<style>
-  .fd{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: #fff;
-    background-color:#642f5b;
-    opacity: 0.7;
-    width: 60%;
-  }
-  .fd span{
-    text-align: center;
-    display: block;
+<div class="content-wrap clearfix animate"  id="gsjj" style="
+    position: relative;
+    z-index: 9999;
+    background: #fff;
     width: 100%;
-    height: 100%;
-  }
-  .fd-1{
-    font-size: 35px;
-    transform:translate(-50%,-130%);
-    height: 90px;
-    line-height: 90px;
-    font-weight: bold;
-    background-color: #50a774;
-  }
-  .fd-2{
-    background-color:#642f5b;
-    font-size: 25px;
-    transform:translate(-50%,-0%);
-    height: 130px;
-    line-height: 50px;
-  }
-  .row{
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-  .row:before {
-    display: table;
-    content: " ";
-  }
-  .col-sm-4 {
-    width: 33.33333333%;
-  }
-  .contact-info {
-    margin-top: 10px;
-  }
-  ul {
-    overflow: hidden;
-  }
-  ul li {
-    color: #192224;
-    float: left;
-  }
-  .header-style-1 .topbar .contact-info ul > li:last-child i, .header-style-2 .topbar .contact-info ul > li:last-child i, .header-style-3 .topbar .contact-info ul > li:last-child i {
-    top: 2px;
-  }
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
-  }
-  .abs {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-  }
-  #span_icon {
-    margin: -1px 0 5px;
-    text-align: center;
-    box-sizing: border-box;
-    display: block;
-    font-size: 30px;
-  }
+" >
+    <img src="/static/images/20200730/4448dd3fb3574fa4601848c5b3de5c95.jpg" alt="" style="width: 100%" aos="zoom-in">
+    {foreach $arr as $v}
+    {if $v['section_id']==1}
+    <div class="about-wrap"  style="background:url('{$v['section_img']}') no-repeat center center
+;position: relative; width: 100%;background-size:cover;
+">
 
-  #span_bg {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    cursor: pointer;
-    background: #642f5b;
-    font-size: 14px;
-    line-height: 14px;
-    color: #fff;
-    padding: 16px 25px 13px;
-    z-index: 150;
-    opacity: .8;
-    box-sizing: border-box;
-    display: inline-block;
-  }
+        <div class="container-fluid" >
+            <div class="title-1 text-center" aos="fade-down">
+                <div class="chtit">{$v['section_name']}</div>
+                <div class="entit">about us</div>
+                <div class="arrow"><img src="static/picture/title-1-arrow1.png" alt=""></div>
+            </div>
+            <div class="about-con" aos="fade-right">
+                <div class="a1box">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="conbox">
+                                <div class="titlebox clearfix">
+                                    <div class="icon lt"><img src="/uploads/icon/favicon.ico" alt="" style="height:48px;margin-right:10px;"></div>
+                                    <div class="tit lt">{$c_list->name}<span>{$c_list->english}</span></div>
+                                </div>
+                                <div class="con">
+                                    <div class="cn">
+                                        {$c_list->descrip}
+                                    </div>
+                                </div>
+                                <div class="phonetxt"><i><img src="static/picture/about-icon1.png" alt=""></i><span>{$c_list->tel}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12 main-padleft-1" >
+                            <div class="picbox">
+                                <video src="{$c_list->video}" id="videobox" poster="images/video.jpg" controlsList="nodownload"  controls="controls" muted autoplay style="width: 100%;"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-</style>
-<!--固定右侧-->
-<span id="span_bg" onclick="">
-
-			<span id="span_icon"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-  <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-</svg></span>
-			<span>联系我们</span>
-		</span>
-<!--logo-->
-<div class="headerbg">
-  <div class="header"> <a href="#" class="logo"><img src="static/picture/logo.png" /></a> <div class="clear"></div> </div>
-</div>
-<!--轮播图-->
-<div class="mbannerbg">
-  <div class="banner-main">
-    <div class="banner-main-img">
-      <ul>
-        {volist name='list' id='obj'}
-        <li style="display: list-item;"><a href="#">
-          <img src="{$obj.img_url}">
-          <div class="abs">
-            <p class="fd-1 fd"><span >{$obj.img_title}</span></p>
-            <p class="fd-2 fd"><span >{$obj.img_concent}</span></p>
-          </div>
-        </a>
-        </li>
-        {/volist}
-      </ul>
-    </div>
-    <div class="ui-controls">
-      <ul>
-        {volist name='list' id='obj'}
-        <li class="">{$obj.img_id}</li>
-        {/volist}
-      </ul>
-      <div class="pager-next">
-        <a href="javascript:void(0);" class="ui-prev">上一张</a>
-        <a href="javascript:void(0);" class="ui-next">下一张</a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="hh-abg">
-  <div class="hh-a-tit">
-    <p>基于云计算、移动端、IoT、K8s、人工智能等前沿科技</p>
-    <h2>为杰科技，用新方法解决您的难题！</h2>
-  </div>
-  <div class="hh-a">
-    <dl class="hh-a-dla wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s">
-      <dt>提升</dt>
-      <dd>
-        <p>物料流转效率</p>
-        <p>订单按时交付率</p>
-        <p>插单灵活度</p>
-        <p>产能利用率</p>
-      </dd>
-    </dl>
-    <dl class="hh-a-dlb wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s">
-      <dt>降低</dt>
-      <dd>
-        <p>人工、物料成本</p>
-        <p>数据统计时间</p>
-        <p>次品率</p>
-        <p>异常处理时间</p>
-      </dd>
-    </dl>
-    <dl class="hh-a-dlc wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s">
-      <dt>实现</dt>
-      <dd>
-        <p>产品信息一码追溯</p>
-        <p>量化可视化决策分析</p>
-        <p>生产流程优化</p>
-      </dd>
-    </dl>
-    <div class="clear"></div>
-  </div>
-  <div class="hh-ab"><a href="javascript:void(0);" class="apply-button">让我们的专家为您免费诊断</a></div>
-</div>
-<div class="hh-b-tit">生产全链路数字化管理111</div>
-ss
-
-<div class="hh-ba">
-  <ul class="hh-baula">
-    <li class="on"><span class="hh-ba-spana">生产排程</span></li>
-    <li><span class="hh-ba-spanb">原料入厂</span></li>
-    <li><span class="hh-ba-spanc">生产执行</span></li>
-    <li><span class="hh-ba-spand">成品出厂</span></li>
-    <li><span class="hh-ba-spane">设备维护</span></li>
-    <li><span class="hh-ba-spana">决策分析</span></li>
-  </ul>
-  <div class="clear"></div>
-</div>
-<div class="hh-bb">
-  <div class="swiper-hhbb">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <dl>
-          <dt><img src="static/picture/p02.png" /></dt>
-          <dd>
-            <h2>生产排程</h2>
-            <p>生产进度实时可查，交期明确；计划可执行性提高，排程灵活高效</p>
-            <a href="javascript:void(0);" class="hh-bb-yy apply-button">申请体验</a></dd>
-        </dl>
-        <div class="clear"></div>
-      </div>
-      <div class="swiper-slide">
-        <dl>
-          <dt><img src="static/picture/p03.png" /></dt>
-          <dd>
-            <h2>原料入厂</h2>
-            <p>数字化物料管理，轻松实现帐料相符；1秒通知入厂检，消除错检漏检</p>
-            <a href="javascript:void(0);" class="hh-bb-yy apply-button">申请体验</a></dd>
-        </dl>
-        <div class="clear"></div>
-      </div>
-      <div class="swiper-slide">
-        <dl>
-          <dt><img src="static/picture/p04.png" /></dt>
-          <dd>
-            <h2>生产执行</h2>
-            <p>生产进度实时上报，提升车间管控力；精准投产，操作规范</p>
-            <a href="javascript:void(0);" class="hh-bb-yy apply-button">申请体验</a></dd>
-        </dl>
-        <div class="clear"></div>
-      </div>
-      <div class="swiper-slide">
-        <dl>
-          <dt><img src="static/picture/p05.png" /></dt>
-          <dd>
-            <h2>成品出厂</h2>
-            <p>任务一键送达，减少生产等待；提高质检精准度，提升质检效率</p>
-            <a href="javascript:void(0);" class="hh-bb-yy apply-button">申请体验</a></dd>
-        </dl>
-        <div class="clear"></div>
-      </div>
-      <div class="swiper-slide">
-        <dl>
-          <dt><img src="static/picture/p06.png" /></dt>
-          <dd>
-            <h2>设备维护</h2>
-            <p>有效减少设备故障发生，降低停机频率；设备异常自动报警，及时响应</p>
-            <a href="javascript:void(0);" class="hh-bb-yy apply-button">申请体验</a></dd>
-        </dl>
-        <div class="clear"></div>
-      </div>
-      <div class="swiper-slide">
-        <dl>
-          <dt><img src="static/picture/p07.png" /></dt>
-          <dd>
-            <h2>决策分析</h2>
-            <p>全厂动态尽在掌握，生产运营指标图表化，1秒定位问题，解决瓶颈</p>
-            <a href="javascript:void(0);" class="hh-bb-yy apply-button">申请体验</a></dd>
-        </dl>
-        <div class="clear"></div>
-      </div>
-    </div>
-  </div>
-  <div class="swiper-hhbb-prev"></div>
-  <div class="swiper-hhbb-next"></div>
-</div>
-<div class="hh-cbg">
-  <div class="hh-ca">
-    <p>是什么让为杰科技与众不同？</p>
-    <h2>选择为杰的<b>8</b>大理由</h2>
-  </div>
-  <div class="hh-cb">
-    <dl class="hh-ca-dla">
-      <dt></dt>
-      <dd>
-        <h2>4-6周极速上线</h2>
-        <p>云端部署，无需购买硬件和改造产线</p>
-      </dd>
-    </dl>
-    <dl class="hh-ca-dlb">
-      <dt></dt>
-      <dd>
-        <h2>小投入，低风险</h2>
-        <p>仅需传统软件1/4的费用，免费升级及维护</p>
-      </dd>
-    </dl>
-    <dl class="hh-ca-dlc">
-      <dt></dt>
-      <dd>
-        <h2>上手仅需1-2天</h2>
-        <p>APP+网页均可使用，操作如微信一般简单</p>
-      </dd>
-    </dl>
-    <dl class="hh-ca-dld">
-      <dt></dt>
-      <dd>
-        <h2>多厂协同</h2>
-        <p>实现集团与多工厂的订单、产能、质量等高效协同</p>
-      </dd>
-    </dl>
-    <dl class="hh-ca-dle">
-      <dt></dt>
-      <dd>
-        <h2>按需灵活配置</h2>
-        <p>无需定制开发，像搭积木一样轻松配置</p>
-      </dd>
-    </dl>
-    <dl class="hh-ca-dlf">
-      <dt></dt>
-      <dd>
-        <h2>数据安全保障</h2>
-        <p>灾难备份，加密传输，异地备份，全方位保证数据私密与安全</p>
-      </dd>
-    </dl>
-    <dl class="hh-ca-dlg">
-      <dt></dt>
-      <dd>
-        <h2>业界最新技术</h2>
-        <p>采用K8S、Docker、TensorFlow等最新技术栈</p>
-      </dd>
-    </dl>
-    <dl class="hh-ca-dlh">
-      <dt></dt>
-      <dd>
-        <h2>高度的可扩展性</h2>
-        <p>支持延展，支持二次开发</p>
-      </dd>
-    </dl>
-    <div class="clear"></div>
-  </div>
-</div>
-<div class="hh-da">
-  <p>专注于云端制造协同</p>
-  <p>我们在各个行业积累了丰富经验</p>
-</div>
-<div class="hh-d">
-  <dl class="hh-d-dla">
-    <dt></dt>
-    <dd class="hh-d-dl-ddb">
-      <h2>医药行业</h2>
-      <tt></tt>
-      <p>多品种生产</p>
-      <p>高库存与缺料并存</p>
-      <p>GMP合规要求</p>
-      <p>SOP贯穿全流程</p>
-    </dd>
-    <dd class="hh-d-dl-ddc">
-      <h2>华润医药</h2>
-      <p>借助为杰科技，华润医药实现了药品生产的全面数字化</p>
-    </dd>
-    <dd class="hh-d-dl-dda">
-      <p>“为杰科技系统如期上线在多个车间，成为集团内标杆案例。作为集团第一个云端部署制造核心系统，为杰系统正在往更多的生产基地进行覆盖，而为杰系统的架构设计很好地适应了各类产品的生产管理要求和集团统一的监管要求，为后续跨地域的产销协同夯实了数字化基础。”</p>
-      <p>——华润医药</p>
-    </dd>
-  </dl>
-  <dl class="hh-d-dlb">
-    <dt></dt>
-    <dd class="hh-d-dl-ddb">
-      <h2>化学制品行业</h2>
-      <tt></tt>
-      <p>小批量、多品种</p>
-      <p>产品周期短</p>
-      <p>生产流程复杂</p>
-      <p>包装要求高</p>
-    </dd>
-    <dd class="hh-d-dl-ddc">
-      <h2>伟博海泰</h2>
-      <p>借助为杰科技，伟博海泰远程透视人机料法环</p>
-    </dd>
-    <dd class="hh-d-dl-dda">
-      <p>“为杰团队实现了四周完整上线，使用范围包含了仓库、质检、计划、车间等岗位，迅速实现了一整套现场管理的数字化。”</p>
-      <p>——常州伟博海泰</p>
-    </dd>
-  </dl>
-  <dl class="hh-d-dlc">
-    <dt></dt>
-    <dd class="hh-d-dl-ddb">
-      <h2>金属制品行业</h2>
-      <tt></tt>
-      <p>外协订单普遍</p>
-      <p>产品种类多而杂</p>
-      <p>计划调整频繁</p>
-      <p>流转卡记录过程数据</p>
-    </dd>
-    <dd class="hh-d-dl-ddc">
-      <h2>海泰科特</h2>
-      <p>借助为杰科技，海泰科特实现跨部门生产高效协作</p>
-    </dd>
-    <dd class="hh-d-dl-dda">
-      <p>“为杰系统很好衔接起了计划、生产、之类和仓储部门的工作，明确的任务清单让部门主管具备远程监督进度、实施调配资源和及时处理异常情况的能力，工作和生产效率显著提高。”</p>
-      <p>——海泰科特</p>
-    </dd>
-  </dl>
-  <dl class="hh-d-dld">
-    <dt></dt>
-    <dd class="hh-d-dl-ddb">
-      <h2>食品行业</h2>
-      <tt></tt>
-      <p>多为批量连续生产</p>
-      <p>库存周转快</p>
-      <p>严格的批号批次管控</p>
-      <p>复杂的配方管理</p>
-    </dd>
-    <dd class="hh-d-dl-ddc">
-      <h2>花冠乳品</h2>
-      <p>借助为杰科技，花冠乳品实现全方位质量管理</p>
-    </dd>
-    <dd class="hh-d-dl-dda">
-      <p>“为杰科技在短期实现了全生产质量过程控制，在原辅料控制、制造过程、放行评估等关键环节上提升风险控制能力，加强食品安全。落地了偏差、变更、电子批记录、生产信息追溯等功能模块，很好地推动了企业的标准化作业规范与精益化管理。”</p>
-      <p>——花冠乳品</p>
-    </dd>
-  </dl>
-  <dl class="hh-d-dle">
-    <dt></dt>
-    <dd class="hh-d-dl-ddb">
-      <h2>塑料行业</h2>
-      <tt></tt>
-      <p>自动化程度高</p>
-      <p>单人负责多产线</p>
-      <p>注重生产数据采集</p>
-      <p>生产检测要求严格</p>
-    </dd>
-    <dd class="hh-d-dl-ddc">
-      <h2>亚大集团</h2>
-      <p>借助为杰科技，亚大塑料集团建立了多厂监控的数字平台</p>
-    </dd>
-    <dd class="hh-d-dl-dda">
-      <p>“为杰科技的云端架构符合集团管理多地域多厂区的需要，这一优势帮助我们实现了流程和数据的标准化管理，加强了跨区域生产的产品可靠性。”</p>
-      <p>——亚大塑料管业集团</p>
-    </dd>
-  </dl>
-  <dl class="hh-d-dlf on">
-    <dt></dt>
-    <dd class="hh-d-dl-ddb">
-      <h2>电器行业</h2>
-      <tt></tt>
-      <p>品种多、工艺长</p>
-      <p>产品在制监控难</p>
-      <p>绩效多为人工计件</p>
-      <p>急单、插单频繁</p>
-    </dd>
-    <dd class="hh-d-dl-ddc">
-      <h2>永德吉集团</h2>
-      <p>借助为杰科技，永德吉照明实现生产数据系统化整合</p>
-    </dd>
-    <dd class="hh-d-dl-dda">
-      <p>“为杰产品解决了原有ERP系统的数据延迟问题，以实际生产作业进度带动线边仓物料拉动配送，质量部门可以根据实际生产数量进行过程检验，避免物料配送和检验不及时影响生产效率。”</p>
-      <p>——永德吉集团</p>
-    </dd>
-  </dl>
-  <div class="clear"></div>
-</div>
-<div class="hh-ab hh-aba"><a href="javascript:void(0);" class="apply-button">了解更多案例详情</a></div>
-<div class="hh-da hh-daa">
-  <p>近<b>1000</b>家中大型企业的选择</p>
-</div>
-<div class="hh-e"> <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img02.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img03.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img04.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img05.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img06.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img07.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img08.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img09.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img10.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img11.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img12.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img13.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img14.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img15.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img16.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img17.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img18.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img19.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img20.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img21.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img22.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img23.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img24.png" /></a>
-  <a href="javascript:void()" class="wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s"><img src="static/picture/img25.png" /></a></div>
-<div class="hh-f">
-  <div class="hh-fa">来自为杰客户的评价</div>
-  <div class="hh-fb">
-    <div class="swiper-hhfb">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <dl>
-            <dt><img src="static/picture/boss1.png" /></dt>
-            <dd>
-              <h2>大型国有制药企业 信息化部门负责人</h2>
-              <p>我们与为杰共创完成了国内首个制药云化生产系统，这是第一个通过GMP验证的SaaS系统。它不仅满足了我们电子SOP的需求，让流程管控更加严密严谨，还实现了各事业部与集团间生产信息的实时同步，大大提高了决策效率。</p>
-              <p class="hh-fb-pa">--大型国有制药企业 信息化部门负责人</p>
-            </dd>
-          </dl>
-          <div class="hh-fb-div1 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s">
-            <p>实现了多厂数据互通，决策效率提升</p>
-          </div>
+            </div>
         </div>
-        <div class="swiper-slide">
-          <dl>
-            <dt><img src="static/picture/boss2.png" /></dt>
-            <dd>
-              <h2>中型塑料企业 生产主管</h2>
-              <p>我们用为杰科技替换了之前旧的MES系统。它灵活可配置的产品架构和完善的功能，充分满足了我们新的生产管理需求，帮助我们节省了7000工时。凭借完善的数字化生产标准和追溯能力，我们赢得了客户的信任，从而获得了更多的订单。</p>
-              <p class="hh-fb-pa">--中型塑料企业 生产主管</p>
-            </dd>
-          </dl>
-          <div class="hh-fb-div1 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s">
-            <p>生产数据标准化，轻松实现一码追溯</p>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <dl>
-            <dt><img src="static/picture/boss3.png" /></dt>
-            <dd>
-              <h2>小型金属加工企业  总经理</h2>
-              <p>使用为杰后，我们在没有招聘更多人的基础上，提高了20%的接单能力，还减少了很多因为逾期和质量导致的赔款。</p>
-              <p class="hh-fb-pa">--小型金属加工企业  总经理</p>
-            </dd>
-          </dl>
-          <div class="hh-fb-div1 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s">
-            <p>提高了<b>20%</b>的接单能力</p>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="hh-fb-divm wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1.5s">
-      <div class="swiper-paghhfb"></div>
-      <div class="swiper-hhfb-prev"></div>
-      <div class="swiper-hhfb-next"></div>
+    {elseif $v['section_id']==2}
+    <div class="system-wrap animate" id="xtjs" style="background:url('{$v['section_img']}') no-repeat center center
+;position: relative; width: 100%;background-size:cover;" >
+        <div class="container-fluid" >
+            <div class="title-1 text-center" aos="fade-down">
+                <div class="chtit">系统<span>介绍</span></div>
+                <div class="entit">System introduction</div>
+                <div class="arrow"><img src="static/picture/title-1-arrow1.png" alt=""></div>
+            </div>
+            <div class="system-con" aos="fade-up">
+                <div class="systembox">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {volist name='product' id='obj'}
+                            <div class="swiper-slide">
+                                <a href="{:url('selide/index',array('pid'=>$obj.id))}" target="_blank">
+                                    <img src="{$obj.img}" alt="">
+                                    <div class="txt">{$obj.title}</div>
+                                </a>
+                            </div>
+                            {/volist}
+                        </div>
+
+                        <div id="contrast">
+                            <a href="javascript:void(0);" id="btn1"><</a><a class="default" href="javascript:void(0);" id="btn2">></a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
+    {elseif $v['section_id']==3}
+    <div class="application-wrap animate" id="yyly" style="background:url('{$v['section_img']}') no-repeat center center
+;position: relative; width: 100%;background-size:cover;">
+        <div class="application-con">
+            <div class="w3cFocus">
+                <div class="container-fluid">
+                    <div class="w3cFocusIn">
+                        <div class="hd">
+                            <ul>
+                                <div class="bigtitbox" aos="fade-left">
+                                    <div class="chtit" style="color: #343434">应用<span style="color:#026fef;">领域</span></div>
+                                    <div class="entit">AREAS OF APPLICATION</div>
+                                    <div class="line"></div>
+                                </div>
+                                {volist name='application' id='obj'}
+                                <li aos="fade-right">
+                                    <span>0{$x++}.</span><span>{$obj.title}</span><span><img src="{$obj.image}" alt=""></span>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bdbox" aos="fade-left">
+                        <div class="bd maximg">
+                            <ul>
+                                {volist name='application' id='obj'}
+                                <li>
+                                    <a href="{:url('selide/index',array('application_id'=>$obj.id))}" class="clearfix">
+                                        <div class="picbox">
+                                            <div class="imgbox sizeCover" >
+                                                <img src="{$obj.image}" alt="">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                        <a class="next" href="javascript:void(0)">></a>
+                        <a class="prev" href="javascript:void(0)"><</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {elseif $v['section_id']==4}
+    <div class="video-wrap animate" id="spzs" data-animate="bounceIn"  style="background:url('{$v['section_img']}') no-repeat center center
+;position: relative; width: 100%;background-size:cover;">
+        <div class="container-fluid" >
+            <div class="title-1 text-center" aos="fade-down">
+                <div class="chtit">视频<span>展示</span></div>
+                <div class="entit">Video display</div>
+                <div class="arrow"><img src="static/picture/title-1-arrow1.png" alt=""></div>
+            </div>
+            <div class="video-con">
+                <div class="tabhd" aos="fade-left">
+                    {volist name='videos' id='obj'}
+                    <div class="thdlist">
+                        <a href="javascript:void(0);">
+                            <div class="title">{$obj.title}</div>
+                            <div class="conbox">{$obj.content}</div>
+                        </a>
+                    </div>
+                    {/volist}
+                </div>
+                <div class="tabbd" aos="fade-right">
+                    {volist name='videos' id='obj'}
+                    <div class="tbdlist">
+                        <div class="picbox">
+                            <video src="{$obj.url}" class="videoboxxx" controls="controls" controlsList="nodownload"></video>
+                        </div>
+                        <div class="morebtn"></div>
+                        <div class="conbox">
+                            <div class="icon"><img src="static/picture/video-icon1.png" alt=""></div>
+                            <div class="con" aos="fade-up">
+                                <div class="tit">{$obj.title}</div>
+                                <div class="cn" style="height: 60px">{$obj.content}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+    </div>
+    {elseif $v['section_id']==5}
+    <div class="main-pad-1 main-background-1 animate" id="alzs" style="background:url('{$v['section_img']}') no-repeat center center
+;position: relative; width: 100%;background-size:cover;overflow-y:hidden;padding-top: 20px;">
+        <div class="container-fluid" >
+            <div class="case-wrap">
+                <div class="title-1 text-center active2" aos="flip-up">
+                    <div class="chtit">案例<span>展示</span></div>
+                    <div class="entit">Case presentation</div>
+                    <div class="arrow"><img src="static/picture/title-1-arrow2.png" alt=""></div>
+                </div>
+                <div class="case-con" aos="fade-up">
+                    <div class="case-carousel maximg">
+                        {if isset($caseses)}
+                        {if !empty($caseses)}
+                        {foreach $caseses as $casese}
+                            <a href="{:url('selide/index',array('case_id'=>$casese['id']))}" class="item">
+                                <div class="picbox">
+                                    <div class="imgbox sizeCover" >
+                                        <img src="{$casese['case_img']}" alt="">
+                                    </div>
+
+                                </div>
+                                <div class="conbox">案例展示</div>
+                                <div class="showcn">
+                                    <div class="tit">案例展示</div>
+                                </div>
+                            </a>
+                        {/foreach}
+                        {else}
+                            <a href="{:url('casese/info',array('id'=>1))}" class="item">
+                                <div class="picbox">
+                                    <div class="imgbox sizeCover" >
+                                        <img src="{if isset($casese)}{$casese['case_img']}{/if}" alt="你这里没有图片" style="width:100%;height:220px;">
+                                    </div>
+
+                                </div>
+                                <div class="conbox">默认案例展示</div>
+                                <div class="showcn">
+                                    <div class="tit">默认案例展示</div>
+                                </div>
+                            </a>
+                        {/if}
+                        {/if}
+                    </div>
+                </div>
+            </div>
+            <div class="partner-wrap animate" data-animate="bounceIn" id="hzhb" aos="zoom-in">
+                <div class="title-1 text-center active2">
+                    <div class="chtit">合作<span>伙伴</span></div>
+                    <div class="entit">cooperative partner</div>
+                    <div class="arrow"><img src="static/picture/title-1-arrow2.png" alt=""></div>
+                </div>
+                <div class="partner-con" aos="flip-down">
+                    <div class="partner-carousel">
+                        {volist name='Cooperation' id='obj'}
+                        <a href="javascript:void(0);" class="item">
+                            <div class="picbox">
+                                <div class="imgbox text-center imgs">
+                                    <img src="{$obj.url}" alt="">
+                                </div>
+                            </div>
+                        </a>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {/if}
+    {/foreach}
 </div>
-<div class="hh-gbg">
-  <div class="hh-g">
-    <h2>即刻体验<br/>
-      为杰科技的便捷与效用</h2>
-    <p>完成表单填写，让我们的专家助您取得成功</p>
-  </div>
-  <div class="hh-ga">
-    <!--<input name="" type="text" placeholder="称呼" class="hh-ga-txta">
-    <input name="" type="text" placeholder="公司" class="hh-ga-txtb">-->
-    <input name="" type="text" placeholder="请输入手机号" class="hh-ga-txtc" id="phone">
-    <!--<select name="" placeholder="所属行业" class="hh-ga-txtd">
-      <option>行业1</option>
-      <option>行业2</option>
-    </select>-->
-    <input name="" type="button" value="申请体验" class="hh-ga-but" id="btt">
-  </div>
-  <div class="hh-ga" id="tips" style="color:#C00; background:none; margin-top:0; padding:0; display:none;">请输入正确的手机号</div>
+
+<div class="visible-xs-block visible-sm-block hot-wrap" style="position: fixed; bottom: 0px;left:0px;z-index: 999999999">
+    <div class="list"><a href="tel:4009-6688-39"><i><img src="static/picture/phone-icon.png" alt=""></i><span>电 话</span></a></div>
+    <div class="list"><a href="contact.php"><i><img src="static/picture/weizhi-icon.png" alt=""></i><span>地 图</span></a></div>
+    <div class="list"><a href=""><i><img src="static/picture/fenxiang-icon.png" alt=""></i><span>首 页</span></a></div>
+    <div class="list"><a href="sms:18036817807"><i><img src="static/picture/ewm-icon.png" alt=""></i><span>邮 件</span></a></div>
 </div>
-<div class="mbanner-c"><a href="tel:400-921-0816" class="mbanner-c-a">400-921-0816</a><a href="javascript:void()" class="mbanner-c-b"><em>微信咨询</em><div class="mbanner-c-b-tbox"><span class="mbanner-c-b-close">X</span><img src="images/ewm.jpg"></div></a><a href="javascript:void(0);" class="mbanner-c-c apply-button">申请体验</a><a href="tel:400-921-0816" class="mbanner-c-d">电话咨询：400-921-0816</a></div>
-<script src="static/js/jquery-1.10.1.min.js"></script>
-<script src="static/js/swiper.min.js"></script>
-<script src="static/js/wow.min2.js"></script>
-<script src="static/js/index.js"></script>
+
+<script src="http://demo.htmleaf.com/1704/201704271523/dist/scrolla.jquery.min.js"></script>
+<!--<script>-->
+
+<!--    $('.animate').scrolla({-->
+<!--        mobile: false,-->
+<!--        once: false-->
+<!--    });-->
+<!--</script>-->
 <script>
-  $("#btt").click(function(){
-    var phone = document.getElementById('phone').value;
-    if(!(/^1[3456789]\d{9}$/.test(phone))){
-      $("#tips").show()
-      return false;
-    }
-    else {
-      $("#tips").hide()
-      var utm = window.location.search;
-      var phoneParams = `phone=${phone}`;
-      var params = utm !== '' ? `${utm.split('?')[1]}&${phoneParams}` : phoneParams;
-      window.open("http://www.baidu.com", '_blank');
-    }
-  });
-  if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
-    new WOW().init();
-  };
-  $(".apply-button").click(function(){
-    window.open(`http://www.baidu.com`, '_blank');
-  })
+    AOS.init({
+        easing: 'ease-out-back',
+        duration: 1000,
+        once:false
+    });
 </script>
 <script>
-  $(function() {
-    var page = Number("{$page}")-1
-    var num = 0;
-    $('.ui-controls ul li').click(function() {
-      $(this).addClass('current').siblings().removeClass('current');
-      $('.banner-main-img ul li').eq($(this).index()).fadeIn(300);
-      $('.banner-main-img ul li').eq($(this).index()).siblings().fadeOut(300);
-      num = $(this).index();
-    })
-    var myfn = function() {
-      $('.ui-controls ul li').eq(num).addClass('current').siblings().removeClass('current');
-      $('.banner-main-img ul li').eq(num).fadeIn(300);
-      $('.banner-main-img ul li').eq(num).siblings().fadeOut(300);
-    }
-    $('.ui-next').click(function() {
-      num++;
-      if (num > page) {
-        num = 0;
-      }
-      myfn();
-    })
-    $('.ui-prev').click(function() {
-      num--;
-      if (num < 0) {
-        num = page;
-      }
-      myfn();
-    })
-    //基本定时器功能
-    var timer01 = null;
-    timer01 = setInterval(function() {
-      num++;
-      if (num > page) {
-        num = 0;
-      }
-      myfn();
-    }, 5000)
-    //鼠标移入/暂停定时器
-    $('.banner-main').hover(function() {
-      clearInterval(timer01);
-    }, function() {
-      timer01 = setInterval(function() {
-        num++;
-        if (num > page-1) {
-          num = 0;
-        }
-        myfn();
-      }, 5000)
-    })
-  })
+    hljs.initHighlightingOnLoad();
+
+    $('.hero__scroll').on('click', function(e) {
+        $('html, body').animate({
+            scrollTop: $(window).height()
+        }, 1200);
+    });
 </script>
-</body>
-</html>
+{include file='public/bottom'}
+

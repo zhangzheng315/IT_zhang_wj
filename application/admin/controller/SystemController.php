@@ -76,18 +76,8 @@ class SystemController extends BaseController
      */
     public function update(Request $request)
     {
-        $data=[
-            'name'=>input('name'),
-            'title'=>input('title'),
-            'keyword'=>input('keyword'),
-            'describe'=>input('describe'),
-            'Statistics'=>input('Statistics'),
-            'wx'=>input('wx'),
-            'tel'=>input('tel'),
-            'keeps'=>input('keeps')
-        ];
         $systemBase=new SystemBase();
-        return $systemBase->updatesystem($data);
+        return $systemBase->updatesystem();
     }
 
     /**

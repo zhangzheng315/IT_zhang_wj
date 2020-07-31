@@ -39,7 +39,7 @@ class MenuGroupController extends BaseController
     public function save(Request $request)
     {
         $input = $request->param();
-        $rule = [
+            $rule = [
             'name' => 'require',
         ];
         $msg = [

@@ -1,0 +1,558 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{$system.title}</title>
+    <meta name="keywords" content="{$system.keyword}">
+    <meta name="description" content="{$system.describe}">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <link rel="shortcut icon" href="/static/picture/favicon.ico" />
+    <link rel="bookmark"href="/favicon.ico" />
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/shutter.css">
+    <link rel="stylesheet" href="/static/css/idangerous.swiper.css">
+    <link rel="stylesheet" href="/static/css/idangerous.swiper.3dflow.css">
+    <link href="/static/css/owl.carousel.css" rel="stylesheet">
+    <link href="/static/css/owl.theme.css" rel="stylesheet">
+    <link href="/static/css/owl.transitions.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/tabbar.css"/>
+
+    <link rel="stylesheet" href="/assets/aos/dist/aos.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if IE 9]>
+    <script src="/static/js/html5shiv.min.js"></script>
+    <script src="/static/js/respond.min.js"></script>
+    <script>window.location.href = 'https://crazydogs.gitee.io/update/';</script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script src="/static/js/html5shiv.min.js"></script>
+    <script src="/static/js/respond.min.js"></script>
+    <script>window.location.href = 'https://crazydogs.gitee.io/update/';</script>
+    <![endif]-->
+</head>
+<style>
+    body{
+        color: #00140e
+    }
+    .wb{
+        color: #00140e
+    }
+    @keyframes float {
+        from { position: relative;
+            margin-top:200px;
+            opacity: 0;
+        }
+        to {  position: relative;
+            margin-top: 50px;
+            opacity: 1;
+        }
+    }
+    a{
+        text-decoration: none;
+    }
+    .logo img{
+        height: 130px;
+        margin-top: -20px;
+
+    }
+    .dock{
+        top: 40% !important;
+    }
+    .header-wrap .header{
+        height: 60px;
+    }
+    .header-wrap .header .phonetxt{
+        margin-top: 0px;
+    }
+    .nav {
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .nav-left {
+        float: left;
+        z-index: 999999;
+        position: relative;
+    }
+    .nav-right {
+        float: right;
+        margin-top: 30px;
+    }
+    .logo {
+        z-index: 66;
+    }
+    .clearfix {
+        *zoom: 1;
+
+    }
+
+    .top-left img {
+        margin-right: 7px;
+        float: left;
+    }
+    .top-left span {
+        font-size: 12px;
+        color: #8c8c8c;
+        float: left;
+    }
+    em, i {
+        font-style: normal;
+        color: red;
+    }
+
+    .top-left img {
+        margin-right: 7px;
+        float: left;
+    }
+    .top-right a.ly {
+        font-size: 12px;
+        color: #a7a7a7;
+        float: left;
+        margin-top: 3px;
+    }
+
+    .clearfix {
+        zoom: 1;
+    }
+    .foot_bottom .wewhat .img {
+        display: none;
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+        width: 200px;
+        height: 200px;
+        bottom: 76px;
+        left: 0;
+    }
+    .foot_bottom .wewhat {
+        display: block;
+        float: right;
+        color: white;
+        line-height: 76px;
+        background: url('http://www.in-mes.net/images/wewhat.png') no-repeat 0 center;
+        padding-left: 50px;
+        position: relative;
+        font-size: 18px;
+    }
+    .foot_bottom .tel {
+        display: block;
+        float: left;
+        font-size: 30px;
+        line-height: 76px;
+        font-weight: bold;
+        color: white;
+        background: url('http://www.in-mes.net/images/tel.png') no-repeat 0 center;
+        padding-left: 50px;
+        margin-left: 50px;
+    }
+    .foot_bottom .tels {
+        display: block;
+        float: left;
+        font-size: 30px;
+        line-height: 76px;
+        font-weight: bold;
+        color: white;
+        padding-left: 50px;
+        margin-left: 80px;
+    }
+    .tycp{
+        background: red;border-radius: 15px;padding:0px 35px;width: 100px;
+        cursor: pointer;
+    }
+    .sqty span{
+        color: #fff;
+    }
+    .glyphicon{
+        top: 10px;
+    }
+    .headers{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        padding-bottom: 5px;
+        background: rgba(0,0,0,0.7);
+        z-index: 999;
+    }
+    .nav-wrap{
+        border: none;
+        position: fixed;
+        top:0;
+        left: 0;
+        color: #fff;
+        width:100%;
+        z-index: 9999999;
+
+    }
+    img{
+        object-fit: cover;
+    }
+    .sp{
+        width: 100%;
+        background: #000;
+    }
+    .jAPxxm {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+    .jAPxxm video {
+        position: absolute;
+        z-index: 0;
+        bottom: 0px;
+        min-height: 100vh;
+        min-width: 100vw;
+        background-size: cover;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    .listh1:hover{
+        background: #fff;
+        color:blue;
+        font-size: 20px;
+    }
+    .tiyan{
+        line-height: 60px;
+        display: block;
+        background: #00a0e9;
+        text-align: center;
+        font-size: 15px;
+        font-weight:700;
+        transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -webkit-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+    }
+    .tiyan:hover{
+        font-size: 20px;
+    }
+    .cjhKBh {
+        height: 3.4rem;
+        display: flex;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-top: 0.66rem;
+    }
+    .eHjgnG {
+        height: 3.4rem;
+        width:200px;
+        line-height: 3.4rem;
+        background-color: rgb(4, 190, 117);
+        color: white;
+        text-align: center;
+        display: inline-block;
+        font-size: 0.18rem;
+        font-weight: 300;
+        margin-right: 4.4rem;
+        border-radius: 3.2rem;
+        border-width: initial;
+        border-style: none;
+        border-color: initial;
+        border-image: initial;
+        text-decoration: none;
+    }
+    .eHjgnG a {
+        width: 100%;
+        padding: 0px 0.56rem;
+    }
+    .eFaAvV {
+        font-size: 0.18rem;
+        line-height: 0.4rem;
+        color: rgba(2, 185, 128, 1);
+    }
+    .gTIhMO {
+        height: 3.4rem;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        -webkit-box-align: center;
+        align-items: center;
+        border-radius: 3.2rem;
+        padding: 0px 0.82rem !important;
+        border:1px solid rgba(2, 185, 128, 1);
+    }
+    .eFaAvV img {
+        margin-right: 0.05rem;
+    }
+    .gTIhMO:hover{
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+<!--<video autoplay muted loop style="width: 100%;">-->
+<!--    <source src="https://files.blacklake.cn/ow-videos/cover2-shink.mp4">-->
+<!--</video>-->
+
+<div class="hidden-sm hidden-xs nav-wrap clearfix h-2 dhls">
+    <div style="width: 100%;">
+        <div class="nav-ul" style="display: flex;padding:0 20px">
+            <div class="logo lt navlist"><a href="/"><img src="{$system.logo}" alt="" class="logos"></a></div>
+            <div class="navlist"><a href="/" class="listh1">网站首页<span></span></a></div>
+            <div class="navlist"><a href="#xtjs" name="xtjs"  class="listh1 as">产品中心<span></span></a>
+                <div class="hidden-sm hidden-xs list2-ul" style="display: none;">
+                    {volist name='product' id='obj'}
+                    <div class="list"><a href="{:url('selide/index',array('pid'=>$obj.id))}" class="listh2">{$obj.title}</a>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <div class="navlist"><a href="" class="listh1 as">成功案例<span></span></a></div>
+            <div class="navlist"><a href="" name="spzs" class="listh1 as">视频展示<span></span></a></div>
+            <div class="navlist"><a href="" class="listh1 as">资质证书<span></span></a></div>
+            <div class="navlist"><a href="" class="listh1 as">关于我们<span></span></a></div>
+            <div class="navlist"><a href="" class="listh1 as">人才招聘<span></span></a></div>
+            <div class="navlist"><a href="{:url('/index/address/index')}" class="listh1 as">联系我们<span></span></a></div>
+            <div class="navlist"><a href="{:url('/index/experience/index')}" target="_blank" class="tiyan" style="text-decoration: none;color:white;">申请体验<span></span></a></div>
+        </div>
+    </div>
+</div>
+</div>
+<!--<div class="banner-wrap clearfix">-->
+<!--    <div class="hidden-sm hidden-xs shutter" style="height:600px">-->
+<!--        <div class="shutter-img">-->
+<!--            {volist name='list' id='obj'}-->
+<!--            <a><img src="{$obj.img_url}" alt="#"></a>-->
+<!--            {/volist}-->
+<!--        </div>-->
+<!--        <ul class="shutter-btn">-->
+<!--            <li class="prev"></li>-->
+<!--            <li class="next"></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="visible-sm-block visible-xs-block wbanner-carousel">-->
+
+<!--        {volist name='list' id='obj'}-->
+<!--        <a class="item">-->
+<!--            <img src="{$obj.img_url}" alt="">-->
+<!--        </a>-->
+<!--        {/volist}-->
+<!--    </div>-->
+<!--</div>-->
+<div class="sp" >
+    <div style="
+            position: relative;
+            top: -30%;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.6);
+
+            height: 130%;
+            z-index: 999;
+            margin: auto;
+            color: #fff;
+            text-align: center;
+" aos="fade-down">
+        <div style="             position: relative;top: 50%">
+            <p class="wp" style="
+    font-size: 8rem;
+    font-weight: bold;
+
+">{if !empty($title)}{$title}{/if}</p>
+            {if isset($l_lists)}
+            {foreach $l_lists as $l_list}
+                <p>{$l_list['little_title']}</p>
+            {/foreach}
+            {/if}
+            <br>
+            <br>
+            <br>
+            <div class="landing__LandingLink-s13qzup8-4 cjhKBh">
+                <button class="landing__SeeMore-s13qzup8-7 eHjgnG">
+                    <a href="https://www.blacklake.cn/mes" style="color: #fff">查看更多 &gt;</a>
+                </button>
+                <a class="landing__VideoLink-s13qzup8-6 eFaAvV" id="landing-video-link">
+                    <div class="landing__VideoWapper-s13qzup8-5 gTIhMO">
+                        <img src="https://files.blacklake.cn/ow-images/home-2019/icons/video-play.svg" alt="观看产品介绍视频">
+                        <a href="" style="color:rgba(2, 185, 128, 1);">观看产品介绍视频</a>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+    <div class="background-video__VideoContainer-s1sdnkmr-1 jAPxxm">
+
+        <video id="background-video" autoplay="" loop="" muted="" preload="meta">
+            <source src="https://files.blacklake.cn/ow-videos/cover2-shink.mp4" type="video/mp4">
+
+        </video>
+    </div>
+</div>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.superslide.2.1.1.js"></script>
+<script src="/static/js/owl.carousel.js"></script>
+<script src="/static/js/xw.js"></script>
+<script src="/static/js/velocity.js"></script>
+<script src="/static/js/shutter.js"></script>
+<script src="/editormd/lib/marked.min.js"></script>
+<script>
+    $(function () {
+        $('.sp').css('height',window.innerHeight)
+        $('.shutter').shutter({
+            shutterW:window.innerWidth, // 容器宽度
+            shutterH: window.innerHeight, // 容器高度
+            isAutoPlay: true, // 是否自动播放
+            playInterval: 3000, // 自动播放时间
+            curDisplay: 3, // 当前显示页
+            fullPage: false // 是否全屏展示
+        });
+    });
+</script>
+<script type="text/javascript" src="/static/js/jweixin-1.3.0.js"></script>
+<script src="/static/js/tabbar.js" type="text/javascript" charset="utf-8"></script>
+<script id="qijuacscript" type="text/javascript" src="/static/js/qijuacc.js" data="sn5eba6be24730f31875"></script>
+<script type="text/javascript">
+    var videos = document.getElementsByTagName('video');
+    for (var i = videos.length - 1; i >= 0; i--) {
+        (function(){
+            var p = i;
+            videos[p].addEventListener('play',function(){
+                pauseAll(p);
+            })
+        })()
+    }
+    function pauseAll(index){
+        for (var j = videos.length - 1; j >= 0; j--) {
+            if (j!=index) videos[j].pause();
+        }
+    };
+</script>
+<!--工具插件开始-->
+<link href="/static/css/sty.css" rel="stylesheet">
+<!--<script type="text/javascript" src="/static/js/js.js"></script>-->
+<div class="dock">
+    <ul class="icons">
+        <li class="up toUp"><i></i></li>
+        <li class="im">
+            <i></i><p>在线咨询<br />在线沟通，请点我<a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$c_list->qq}}&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">在线交谈</a></p>
+        </li>
+        <li class="tel">
+            <i></i><p>联系电话：<br />{$c_list->tel}</p>
+        </li>
+        <li class="wechat">
+            <i></i><p><img src="{$c_list->wx}" alt="" /></p>
+        </li>
+        <li class="down"><i></i></li>
+    </ul>
+    <a class="switch"></a>
+</div>
+<script>
+    $('.toUp').click(function () {
+        scrollTo(0,0);
+    })
+</script>
+<!--工具插件结束--><script src="/static/js/idangerous.swiper.min.js"></script>
+<script src="/static/js/idangerous.swiper.3dflow.js"></script>
+<script>
+    $(function(){
+        // $('.as').click(function(){
+//     //根据a标签的href转换为id选择器，获取id元素所处的位置，并高度减50px（这里根据需要自由设置）
+//     $('html,body').animate({
+//         scrollTop: ($($('#xtjs').attr('href')).offset().top)}, {duration: 500,easing: "swing"});
+// });
+        $(".as").click(function() {
+            var id=$(this).attr('name')
+            $("html, body").animate({
+                scrollTop: $("#"+id).offset().top }, {duration: 500,easing: "swing"});
+            return false;
+        });
+        var $containerWidth = $(window).width();
+        if($containerWidth <=480){
+            var mySwiper = new Swiper('.swiper-container',{
+                slidesPerView:1,
+                loop:true,
+                //Enable 3D Flow
+                tdFlow: {
+                    rotate : 0,
+                    stretch :5,
+                    depth: 100,
+                    modifier :1,
+                    shadows:false
+                },
+                onInit: function(swiper){
+                    swiper.swipeNext()
+                }
+            })
+            $('#btn1').click(function(){
+                mySwiper.swipePrev();
+            })
+            $('#btn2').click(function(){
+                mySwiper.swipeNext();
+            })
+        }else if($containerWidth <=990) {
+            var mySwiper = new Swiper('.swiper-container',{
+                slidesPerView:3,
+                loop:true,
+                //Enable 3D Flow
+                tdFlow: {
+                    rotate : 0,
+                    stretch :55,
+                    depth: 200,
+                    modifier :1,
+                    shadows:false
+                },
+                onInit: function(swiper){
+                    swiper.swipeNext()
+                }
+            })
+            $('#btn1').click(function(){
+                mySwiper.swipePrev();
+            })
+            $('#btn2').click(function(){
+                mySwiper.swipeNext();
+            })
+        }else{
+            var mySwiper = new Swiper('.swiper-container',{
+                slidesPerView:3,
+                loop:true,
+                //Enable 3D Flow
+                tdFlow: {
+                    rotate : 0,
+                    stretch :165,
+                    depth: 200,
+                    modifier :1,
+                    shadows:false
+                },
+                onInit: function(swiper){
+                    swiper.swipeNext()
+                }
+            })
+            $('#btn1').click(function(){
+                mySwiper.swipePrev();
+            })
+            $('#btn2').click(function(){
+                mySwiper.swipeNext();
+            })
+        }
+    });
+</script>
+<script src="/assets/aos/dist/aos.js"></script>
+<script>
+    $("body").css("overflow-x","hidden").css("width","100%").css('height','100%');
+    document.body.addEventListener('touchmove', self.welcomeShowedListener, false);
+    window.onscroll = function() {
+        var headerMain =$('.dhls')
+        if(window.pageYOffset >= 550){
+            headerMain.css('background','rgba(0,0,0,0.55)')
+        } else {
+            headerMain.css('background','none')
+        }
+    }
+</script>
+<script type="text/javascript">
+    var sUserAgent = navigator.userAgent;
+    if (sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('iPhone') > -1 || sUserAgent.indexOf('iPad') > -1 || sUserAgent.indexOf('iPod') > -1 || sUserAgent.indexOf('Symbian') > -1) {
+        //手机
+        $('.wp').css('font-size','20px')
+        $('.eHjgnG').css('font-size','10px')
+        $('.gTIhMO').css('font-size','10px')
+    } else {
+//电脑
+
+    }
+</script>

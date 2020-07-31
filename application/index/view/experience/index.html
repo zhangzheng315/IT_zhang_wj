@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="http://www.jq22.com/demo/jqueryzhuce202007052145/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="http://www.jq22.com/demo/jqueryzhuce202007052145/js/register.js"></script>
+</head>
+<style>
+    body{
+        background-color: rgb(237, 240, 248);
+    }
+    .jq22-register-logo{
+        width: 300px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .jq22-register-popup{
+        background: none;
+    }
+</style>
+<body>
+<div class="jq22-register-popup">
+    <div class="jq22-register-box">
+
+        <div class="jq22-register-logo">
+            为杰科技-免费申请试用
+        </div>
+        <div class="jq22-register-form" id="verifyCheck">
+            <form action="">
+                <div class="jq22-register-form-item">
+                    <input type="text" name="phone" placeholder="手机号码" class="txt01 f-r3 required" keycodes="tel" tabindex="1" data-valid="isNonEmpty" data-error="<i class='icon-tips'></i>请输入手机号" maxlength="11" id="phone">
+                    <label class="focus valid"><div class="msg" style="display:none"><i class='icon-tips'></i>您还未输入手机号</div></label>
+                    <span class="jq22-get-code btn btn-gray f-r3 f-ml5 f-size13" id="time_box" disabled style="display:none;"></span>
+                    <span class="jq22-get-code btn btn-gray f-r3 f-ml5 f-size13" id="verifyYz">获取动态码</span>
+                </div>
+                <div class="jq22-register-form-item">
+                    <input type="text" placeholder="验证码" maxlength="6" id="verifyNo" class="txt02 f-r3 f-fl required" tabindex="2" data-valid="isNonEmpty||isInt" data-error="<i class='icon-tips'></i>请填写正确的手机动态码||<i class='icon-tips'></i>请填写6位手机动态码">
+                    <label class="focus valid"></label>
+                </div>
+                <div class="jq22-register-form-item">
+                    <input type="text" name="username" maxlength="20" placeholder="姓名" class="txt03 f-r3 required" tabindex="3" data-valid="isNonEmpty||between:2-20||isUname" data-error="<i class='icon-tips'></i>您还没有输入账户名||<i class='icon-tips'></i>姓名长度3-20位||<i class='icon-tips'></i>只能输入中文" id="adminNo">
+                    <label class="focus valid"></label>
+                </div>
+                <div class="jq22-register-form-item">
+                    <input type="text" name="company" maxlength="20" placeholder="公司名" class="txt03 f-r3 required" tabindex="3" data-valid="isNonEmpty||between:2-20||isUname" data-error="<i class='icon-tips'></i>您还没有输入账户名||<i class='icon-tips'></i>公司名长度3-20位||<i class='icon-tips'></i>只能输入中文或字母" id="company">
+                    <label class="focus valid"></label>
+                </div>
+                <div class="jq22-register-form-item">
+                    <input id="jq22-btn-reg" class="jq22-btn-reg" placeholder="" readonly="readonly" value="申请体验">
+                </div>
+            </form>
+            <!--        </div>-->
+            <!--        <div class="jq22-register-bottom">-->
+            <!--            <a>©jq22.com</a>-->
+            <!--            <a href="#">联系客服</a>-->
+            <!--            <a href="#">帮助中心</a>-->
+            <!--            <div class="clear"></div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+        </div>
+</body>
+<script type="text/javascript">
+    $(function() {
+        $('#verifyYz').click(function () {
+            if($('#phone').val().length==11){
+                var list={
+                    'tel':$('#phone').val()
+                }
+                $.ajax({
+                    //请求方式
+                    type : "post",
+                    //请求的媒体类型
+                    contentType: "application/x-www-form-urlencoded",
+                    //请求地址
+                    url : "/admin/Send_out/index",
+                    //数据，json字符串
+                    data : list,
+                    //请求成功
+                    success : function(result) {
+                        console.log(result);
+                    },
+                    //请求失败，包含具体的错误信息
+                    error : function(e){
+                        console.log(e.status);
+                        console.log(e.responseText);
+                    }
+                });
+            }
+        })
+
+        $("#jq22-btn-reg").click(function() {
+            if (!verifyCheck._click()) return;
+            var list={
+                'phone':$('#phone').val(),
+                'yzm':$('#verifyNo').val(),
+                'username':$('#adminNo').val(),
+                'name':$('#company').val(),
+            }
+            $.ajax({
+                //请求方式
+                type : "post",
+                //请求的媒体类型
+                contentType: "application/x-www-form-urlencoded",
+                //请求地址
+                url : "/admin/Send_out/verification",
+                //数据，json字符串
+                data : list,
+                //请求成功
+                success : function(result) {
+                    if(result.status==false){
+                        alert(result.msg)
+                        window.location.href = '/';
+                    }else {
+                        alert(result.msg)
+                    }
+                },
+                //请求失败，包含具体的错误信息
+                error : function(e){
+                    console.log(e.status);
+                    console.log(e.responseText);
+                }
+            });
+        });
+    });
+</script>
+</html>

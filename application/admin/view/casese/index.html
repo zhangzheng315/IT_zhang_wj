@@ -1,0 +1,77 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<div class="x-nav">
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row" style="text-align: right;padding-right:20px;">
+        <a href="{:url('casese/create')}">
+            <span class="layui-btn layui-btn-sm">
+                <i class="layui-icon">&#xe654;</i>新增
+            </span>
+        </a>
+    </div>
+    <table class="layui-table" lay-skin="line" lay-filter="test">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>背景图片</th>
+            <th>禁/启用</th>
+            <th width="50%">内容</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {if isset($case_lists)}
+        {if !empty($case_lists)}
+        {foreach $case_lists as $case_list}
+        <tr>
+            <td>{$i++}</td>
+            <td><img src="{$case_list['case_img']}" style="width:50px;"></td>
+            <td>
+                {if $case_list['status']==1}
+                <button class="layui-btn layui-btn-xs layui-btn-normal forbidden" data-url="{:url('casese/forbidden',array('id'=>$case_list['id']))}" f-id="{$case_list['status']}">禁用</button>
+                {else}
+                <button class="layui-btn layui-btn-xs forbidden" data-url="{:url('casese/forbidden',array('id'=>$case_list['id']))}" f-id="{$case_list['status']}" >启用</button>
+                {/if}
+            </td>
+            <td>{$case_list->content}</td>
+            <td>{$case_list->created_at}</td>
+            <td>
+                <a href="{:url('casese/edit',array('id'=>$case_list['id']))}" class="layui-btn layui-btn-xs layui-btn-warm">编辑</a>
+                <button class="layui-btn layui-btn-xs layui-btn-danger delete" data-url="{:url('casese/delete',array('id'=>$case_list['id']))}">删除</button>
+            </td>
+        </tr>
+        {/foreach}
+        {else}
+        <tr>
+            <td colspan="6">暂无数据</td>
+        </tr>
+        {/if}
+        {/if}
+        </tbody>
+    </table>
+</div>
+
+<script src="/assets/js/user/user.js"></script>
+<script>
+    $('.reset').click(function(){
+        document.getElementById('myform').reset();
+    })
+    layui.use(['form','laydate'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+</script>
+{/block}
+
+

@@ -1,0 +1,154 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<style>
+    table{
+        text-align: center;
+    }
+    p{
+        overflow: hidden;
+    }
+    .th th{
+        text-align: center;
+    }
+
+</style>
+
+<div class="x-nav">
+    <i>产品介绍</i>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md11 x-so" action="{:url('system_article/index')}">
+            <input type="text" class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
+            <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+        <div class="layui-col-md1">
+            <a href="{:url('system_article/create')}">
+                <span class="layui-btn layui-btn-small">
+                    <i class="layui-icon">&#xe654;</i>新增
+                </span>
+            </a>
+        </div>
+    </div>
+    <table class="layui-table" lay-filter="test">
+        <thead class="th">
+        <tr>
+            <th>#</th>
+            <th>缩略图</th>
+            <th>广告标题</th>
+            <th>广告状态</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {if isset($list)}
+        {foreach $list as $obj}
+        <tr>
+            <td>{$i++}</td>
+            <td><img src="{$obj.img}" alt=""height="50px" ></td>
+            <td><p>{$obj.title}</p></td>
+            {if $obj.status == 1 }
+            <td><button class="layui-btn layui-btn-xs forbidden" data-url="{:url('system_article/forbidden',array('id'=>$obj['id'],'status'=>$obj['status']))}"  f-id="{$obj.status}">启用</button></td>
+            {else}
+            <td><button class="layui-btn layui-btn-xs forbidden layui-btn-normal" data-url="{:url('system_article/forbidden',array('id'=>$obj['id'],'status'=>$obj['status']))}" f-id="{$obj.status}">禁用</button></td>
+            {/if}
+            <td>{$obj.created_at}</td>
+            <td>{$obj.updated_at}</td>
+            <td>
+                <a href="{:url('system_article/create',array('id'=>$obj.id))}" class="layui-btn layui-btn-xs layui-btn-warm">编辑</a>
+                <button class="layui-btn layui-btn-xs layui-btn-danger delete" data-url="{:url('system_article/delete',array('id'=>$obj.id))}">删除</button>
+            </td>
+        </tr>
+        {/foreach}
+        {else}
+        <tr>
+            <td colspan="5">暂无数据</td>
+        </tr>
+        {/if}
+        </tbody>
+
+    </table>
+
+
+    <ul class="layui-laypage">
+
+    </ul>
+</div>
+
+<!--<script src="/assets/js/user/user.js"></script>-->
+<script>
+    $('.delete').click(function(){
+        let url = $(this).attr('data-url')
+        layui.use('layer', function(){
+            layer.confirm('确定删除？', {
+                btn: ['确定','取消'],
+                time: 200000, //20s后自动关闭
+            },function(index){
+                $.ajax({
+                    type:'post',
+                    url:url,
+                    success:function(rel){
+                        if(rel.status){
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                            location.reload()
+                        }else{
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                        }
+                    }
+                })
+                layer.close(index);
+            });
+        })
+    })
+    $('.forbidden').click(function () {
+        let url = $(this).attr('data-url')
+        let f_id = $(this).attr('f-id') == 1 ? 0 : 1
+        let text = f_id == 1 ? '禁用' : '启用' ;
+        layui.use('layer', function(){
+            layer.confirm('确定进行此操作？', {
+                btn: ['确定','取消'],
+                time: 200000, //20s后自动关闭
+            },function(index){
+                $.ajax({
+                    type:'post',
+                    url:url,
+                    success:function(rel){
+                        if(rel.status){
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                            location.reload()
+                        }else{
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                        }
+                    }
+                })
+                layer.close(index);
+            });
+        })
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+</script>
+{/block}

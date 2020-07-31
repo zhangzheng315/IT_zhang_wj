@@ -31,7 +31,7 @@ $('.forbidden').click(function () {
 });
 
 //用户删除
-$
+
 $('.delete').click(function(){
     let url = $(this).attr('data-url')
     layui.use('layer', function(){

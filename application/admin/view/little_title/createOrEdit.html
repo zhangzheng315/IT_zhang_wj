@@ -1,0 +1,124 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+    <div class="x-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <span class="layui-col-md11">标题{$title}</span>
+                <button class="layui-btn layui-btn-sm back">返回</button>
+            </div>
+
+            <hr/>
+            <form class="layui-form user-create-form">
+                <div class="layui-form-item">
+                    <label for="little_title" class="layui-form-label">
+                        <span class="x-red">*</span>标题名
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="little_title" name="little_title" required="" lay-verify="little_title" value="{if isset($info)}{$info->little_title}{/if}" autocomplete="off" placeholder="输入标题" class="layui-input">
+                        <input type="hidden" name="id" value="{if isset($info)}{$info->id}{/if}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="sort" class="layui-form-label">
+                        <span class="x-red">*</span>排序
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="sort" name="sort" required="" lay-verify="title" value="{if isset($info)}{$info->sort}{/if}" autocomplete="off" placeholder="输入排序数字" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label  class="layui-form-label">
+                    </label>
+                    <button  class="layui-btn layui-btn-sm" lay-filter="{$button}" lay-submit="">
+                        {$title}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $('.back').click(function () {
+            history.go(-1)
+        });
+        layui.use(['form','layer'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+            ,layer = layui.layer;
+            //自定义验证规则
+            var code = '{$info ? 1 : 0}';
+            // if(code=='0'){
+                form.verify({
+                    little_title: function(value){
+                        if(value.length < 0){
+                            return '标题必填';
+                        }
+                    }
+                });
+            // }
+
+            //监听提交
+            form.on('submit(add)', function(e){
+                let data = e.field
+                $.ajax({
+                    type:"post",
+                    url:"{:url('little_title/save')}",
+                    data:{
+                        little_title:data.little_title,
+                        sort:data.sort,
+                    },
+                    success:function (rel) {
+                        if(rel){
+                            layer.msg('新增成功', {
+                                time: 2000,
+                            });
+                            self.location = document.referrer;
+                        }else{
+                            layer.msg('新增失败', {
+                                time: 2000,
+                            });
+                        }
+
+                    }
+                })
+                return false;
+            })
+
+            form.on('submit(update)', function(e){
+                let data = e.field
+                $.ajax({
+                    type:"post",
+                    url:"{:url('little_title/update')}",
+                    data:{
+                        id:data.id,
+                        little_title:data.little_title,
+                        sort:data.sort,
+                    },
+                    success:function (rel) {
+                        console.log(rel)
+                        if(rel.status){
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                            self.location = document.referrer;
+                        }else{
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                        }
+
+                    }
+                })
+                return false;
+            })
+        });
+    </script>
+    <script>
+      //   var _hmt = _hmt || []; (function() {
+      //   var hm = document.createElement("script");
+      //   hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+      //   var s = document.getElementsByTagName("script")[0];
+      //   s.parentNode.insertBefore(hm, s);
+      // })();
+    </script>
+{/block}

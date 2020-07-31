@@ -4,8 +4,12 @@
 namespace app\admin\controller;
 
 
+use app\common\services\company\CompanyService;
+use app\common\services\cooperation\cooperationService;
 use app\common\services\menu\MenuGroupService;
 use app\common\services\menu\MenuService;
+use app\common\services\message\MessageService;
+use app\common\services\user\UserBaseService;
 use think\Controller;
 
 class BaseController extends Controller
@@ -17,6 +21,8 @@ class BaseController extends Controller
 //            return $this->redirect('login/index');
 //        }
         $this->getMenu();
+        $this->getLists();
+        $this->getCount();
     }
 
     /*
@@ -24,6 +30,7 @@ class BaseController extends Controller
      */
     public function getMenu()
     {
+
         $lists = [];
         $menu_service = new MenuService();
         $menu_group_service = new MenuGroupService();
@@ -50,5 +57,45 @@ class BaseController extends Controller
         $this->assign('menus',$menus);
         $this->assign('menu_groups',$menu_groups);
         $this->assign('menu_lists',$lists);
+
+    }
+
+    /*
+     * 获取列表
+     */
+    public function getLists()
+    {
+        $company_service = new CompanyService();
+        $message_service = new MessageService();
+        $m_lists = $message_service->selectMessage();
+        $company_info = $company_service->selectCompany();
+
+        $this->assign('company_info',$company_info);
+        $this->assign('m_lists',$m_lists);
+    }
+
+    /*
+     * 获取计数
+     */
+    public function getCount()
+    {
+        //合作伙伴数量
+        $cooperation_service = new cooperationService();
+        $coo_count = $cooperation_service->getCooperationCount();
+
+        //用户数量
+        $user_service = new UserBaseService();
+        $user_count = $user_service->getUserCount();
+
+        //已处理申请数
+        $message_service = new MessageService();
+        $me_count = $message_service->getMessageOkCount();
+        //未处理申请数
+        $m_count = $message_service->getMessageCount();
+
+        $this->assign('user_count',$user_count);
+        $this->assign('coo_count',$coo_count);
+        $this->assign('me_count',$me_count);
+        $this->assign('m_count',$m_count);
     }
 }

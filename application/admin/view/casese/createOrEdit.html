@@ -1,0 +1,136 @@
+{extend name="layouts::layout"/}
+{block name="content"}
+<style>
+    .layui-form-item .layui-input-inline{
+        width:500px;
+    }
+    .layui-form-label{
+        width:90px;
+    }
+</style>
+    <div class="x-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <span class="layui-col-md11">案例信息{$title}</span>
+                <button class="layui-btn layui-btn-sm back">返回</button>
+            </div>
+
+            <hr/>
+            <form class="layui-form user-create-form" id="formAdd">
+                <div class="layui-form-item">
+                    <label for="image" class="layui-form-label">
+                        <span class="x-red"></span>案例信息背景图
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="hidden" name="id" value="{if isset($info)}{$info->id}{/if}">
+                        <input type="file" id="image" name="image" required="" lay-verify="image">
+                        <img src="{if isset($info)}{$info->case_img}{/if}" class="image" width="50px">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <span class="x-red">*</span>案例信息
+                    </label>
+                    <div id="md-content" class="layui-input-inline" style="width:800px">
+                        <textarea name="content" id="container" lay-verify="content" rows="10" style="width:100%;">{if isset($info)}{$info->content}{/if}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label  class="layui-form-label">
+                    </label>
+                    <button  class="layui-btn layui-btn-sm" lay-filter="{$button}" lay-submit="">
+                        {$title}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script>
+    $("input[name='image']").change(function(){
+        $(".image").css('width','50px')
+        $(".image").attr("src",URL.createObjectURL($(this)[0].files[0]));
+    });
+
+</script>
+    <script>
+        $('.back').click(function () {
+            history.go(-1)
+        });
+
+        layui.use(['form','layer'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+            ,layer = layui.layer;
+            //自定义验证规则
+                form.verify({
+                    content: function(value){
+                        if(value.length <= 0){
+                            return '案例描述必填';
+                        }
+                    },
+                });
+            //监听提交
+            form.on('submit(add)', function(e){
+                var formData = new FormData($('#formAdd')[0])
+                    $.ajax({
+                        type: "post",
+                        url: "{:url('casese/save')}",
+                        data:formData,
+                        cache:false,
+                        processData:false,
+                        contentType:false,
+                        success: function (rel) {
+                            console.log(rel)
+                            if(rel.status){
+                                layer.msg(rel.msg, {
+                                    time: 2000,
+                                });
+                                self.location = document.referrer;
+                            }else{
+                                layer.msg(rel.msg, {
+                                    time: 2000,
+                                });
+                            }
+
+                        }
+                    })
+                return false;
+            })
+
+            form.on('submit(update)', function(e){
+                var formData = new FormData($('#formAdd')[0])
+                $.ajax({
+                    type:"post",
+                    url:"{:url('casese/update')}",
+                    data:formData,
+                    cache:false,
+                    processData:false,
+                    contentType:false,
+                    success:function (rel) {
+                        console.log(rel)
+                        if(rel.status){
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                            self.location = document.referrer;
+                        }else{
+                            layer.msg(rel.msg, {
+                                time: 2000,
+                            });
+                        }
+
+                    }
+                })
+                return false;
+            })
+        });
+    </script>
+    <script>
+      //   var _hmt = _hmt || []; (function() {
+      //   var hm = document.createElement("script");
+      //   hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+      //   var s = document.getElementsByTagName("script")[0];
+      //   s.parentNode.insertBefore(hm, s);
+      // })();
+    </script>
+{/block}

@@ -150,6 +150,16 @@
             }
             return false;
         }
+
+        /*
+        * 获取用户总条数
+        */
+        public function getUserCount()
+        {
+            $user_model = new Users();
+            $rt = $user_model->select();
+            return count($rt);
+        }
     }
 
 ?>

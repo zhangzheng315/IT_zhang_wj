@@ -1,8 +1,18 @@
 {extend name="layouts::layout"/}
 {block name="content"}
+<style>
+    .m-list>li:hover{
+        background: #e6e6e6;
+        color:#3a87ad;
+    }
+    .heig{
+        height:100%;
+    }
+
+</style>
 <div class="x-body">
     <blockquote class="layui-elem-quote">
-        欢迎管理员：<span class="x-red">{:session('user.user_name')}</span>！
+        欢迎管理员：<span class="x-red" style="font-size: 20px">{:session('user.user_name')}</span>！
         当前时间:{:date('Y-m-d H:i:s')}
 <!--        <a onclick="parent.x_admin_add_to_tab('在tab打开','https://www.163.com',true)" style="color: red" href="javascript:;">在tab打开</a>-->
     </blockquote>
@@ -12,50 +22,44 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-body">
-                        <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
-                            <div carousel-item="">
-                                <ul class="layui-row layui-col-space10 layui-this">
-                                    <li class="layui-col-xs2">
-                                        <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>文章数</h3>
+                        <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 110px;">
+                            <div carousel-item="" class="heig">
+                                <ul class="layui-row layui-col-space10 layui-this heig">
+                                    <li class="layui-col-xs2 heig">
+                                        <a href="{:url('user/index')}" class="x-admin-backlog-body heig">
+                                            <h3>用户数</h3>
                                             <p>
-                                                <cite>66</cite>
+                                                <cite>{$user_count}</cite>
                                             </p>
                                         </a>
                                     </li>
-                                    <li class="layui-col-xs2">
-                                        <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>会员数</h3>
-                                            <p>
-                                                <cite>12</cite></p>
+                                    <li class="layui-col-xs2 heig">
+                                        <a href="{:url('message/index')}" class="x-admin-backlog-body heig">
+                                            <h3>申请数</h3>
+                                            <p>已处理：<cite>{$me_count}</cite></p>
+                                            <p>未处理：<cite>{$m_count}</cite></p>
+
                                         </a>
                                     </li>
-                                    <li class="layui-col-xs2">
-                                        <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>回复数</h3>
-                                            <p>
-                                                <cite>99</cite></p>
-                                        </a>
-                                    </li>
-                                    <li class="layui-col-xs2">
-                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                    <li class="layui-col-xs2 heig">
+                                        <a href="javascript:;" class="x-admin-backlog-body heig">
                                             <h3>商品数</h3>
                                             <p>
                                                 <cite>67</cite></p>
                                         </a>
                                     </li>
-                                    <li class="layui-col-xs2">
-                                        <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>文章数</h3>
+                                    <li class="layui-col-xs2 heig">
+                                        <a href="javascript:;" class="x-admin-backlog-body heig">
+                                            <h3>应用领域数</h3>
                                             <p>
                                                 <cite>67</cite></p>
                                         </a>
                                     </li>
-                                    <li class="layui-col-xs2">
-                                        <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>文章数</h3>
+                                    <li class="layui-col-xs2 heig">
+                                        <a href="javascript:;" class="x-admin-backlog-body heig">
+                                            <h3>合作伙伴</h3>
                                             <p>
-                                                <cite>6766</cite></p>
+                                                <cite>{$coo_count}</cite></p>
                                         </a>
                                     </li>
                                 </ul>
@@ -69,20 +73,33 @@
     <fieldset class="layui-elem-field">
         <legend>系统通知</legend>
         <div class="layui-field-box">
-            <table class="layui-table" lay-skin="line">
-                <tbody>
-                <tr>
-                    <td >
-                        <a class="x-a" href="/" target="_blank">新版x-admin 2.0上线了</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <a class="x-a" href="/" target="_blank">交流qq群:(519492808)</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <ul class="layui-row layui-col-space10">
+                {if isset($m_lists)}
+                    {if !empty($m_lists)}
+                    {foreach $m_lists as $m_list}
+                    <li>
+                        <ul class="m-list layui-row layui-col-space10">
+                            <li>公司名称：{$m_list['name']}</li>
+                            <li>联系人：{$m_list['username']}</li>
+                            <li>联系电话：{$m_list['phone']}</li>
+                            <li>申请时间：{$m_list['created_at']}</li>
+                        </ul>
+                    </li>
+                    <hr>
+                    {/foreach}
+                    {else}
+                    <li>
+                        <span style="color:red;font-size: 18px">暂无申请</span>
+                        <ul  class="layui-row layui-col-space10">
+                            <li>公司名称：</li>
+                            <li>联系人：</li>
+                            <li>联系电话：</li>
+                            <hr>
+                        </ul>
+                    </li>
+                    {/if}
+                {/if}
+            </ul>
         </div>
     </fieldset>
     <fieldset class="layui-elem-field">
@@ -91,29 +108,26 @@
             <table class="layui-table">
                 <tbody>
                 <tr>
-                    <th>xxx版本</th>
-                    <td>1.0.180420</td></tr>
+                    <th width="30%">网站版本</th>
+                    <td>1.0.00</td></tr>
                 <tr>
                     <th>服务器地址</th>
-                    <td>x.xuebingsi.com</td></tr>
+                    <td>暂时没有，后期会添加</td></tr>
                 <tr>
                     <th>操作系统</th>
-                    <td>WINNT</td></tr>
+                    <td>WIN</td></tr>
                 <tr>
                     <th>运行环境</th>
-                    <td>Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9</td></tr>
+                    <td>phpstudy 2018版</td></tr>
                 <tr>
                     <th>PHP版本</th>
                     <td>5.6.27</td></tr>
-                <tr>
-                    <th>PHP运行方式</th>
-                    <td>cgi-fcgi</td></tr>
                 <tr>
                     <th>MYSQL版本</th>
                     <td>5.5.53</td></tr>
                 <tr>
                     <th>ThinkPHP</th>
-                    <td>5.0.18</td></tr>
+                    <td>5.0</td></tr>
                 <tr>
                     <th>上传附件限制</th>
                     <td>2M</td></tr>
@@ -122,7 +136,7 @@
                     <td>30s</td></tr>
                 <tr>
                     <th>剩余空间</th>
-                    <td>86015.2M</td></tr>
+                    <td></td></tr>
                 </tbody>
             </table>
         </div>
@@ -134,17 +148,17 @@
                 <tbody>
                 <tr>
                     <th>版权所有</th>
-                    <td>xuebingsi(xuebingsi)
-                        <a href="http://x.xuebingsi.com/" class='x-a' target="_blank">访问官网</a></td>
+                    <td>上海为杰
+                        <a href="JavaScript:;" class='x-a'>访问官网</a></td>
                 </tr>
                 <tr>
                     <th>开发者</th>
-                    <td>马志斌(113664000@qq.com)</td></tr>
+                    <td>上海为杰团队</td></tr>
                 </tbody>
             </table>
         </div>
     </fieldset>
-    <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由x-admin提供技术支持。</blockquote>
+    <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由上海为杰提供技术支持。</blockquote>
 </div>
 <script>
     var _hmt = _hmt || [];

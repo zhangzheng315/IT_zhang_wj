@@ -16,8 +16,9 @@ class ImagesController extends BaseController
      *
      * @return \think\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $input = $request->param();
         $db=new Imgcation();
         $map['ifcation_id'] = ['like','%'.input('ifcation_id').'%'];
         $list = Images::order('img_id', 'asc')->where($map)->paginate('10', false,['query'=>request()->param()]);
@@ -25,8 +26,9 @@ class ImagesController extends BaseController
         $this->assign('list', $list);
         $this->assign('ps',$db->select());
         $this->assign('page',$page);
-
-        return $this->fetch('images');
+        $i = 1;
+//        $page = $input['page'];
+        return $this->fetch('images',compact('i'));
     }
 
     /**
@@ -52,7 +54,7 @@ class ImagesController extends BaseController
     public function save(Request $request)
     {
        $db=new \app\common\services\images\ImagesBase();
-       $db->picture();
+       return $db->picture();
     }
 
     /**
